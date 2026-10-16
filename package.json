@@ -1,0 +1,7 @@
+{
+  "name": "ls-physics-platform",
+  "private": true,
+  "description": "Grade 12 Life Sciences physics platform (Lebanese curriculum)",
+  "scripts": { "build": "node tools/build.js" },
+  "devDependencies": { "katex": "^0.16.0" }
+}

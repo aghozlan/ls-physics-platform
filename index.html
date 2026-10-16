@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LS Physics · Tutoring Centre</title>
+<meta name="description" content="Tutoring Centre — Grade 12 Life Sciences physics, Lebanese curriculum. Interactive chapter toolkits with live models, flashcards and practice sets.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap">
+<link rel="stylesheet" href="assets/css/platform.css">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="logo" href="index.html"><span class="mark">LS</span><span><b>Tutoring Centre</b><small>Grade 12 Life Sciences · Physics</small></span></a>
+  <span class="grow"></span>
+  <button class="iconbtn" data-theme-toggle aria-label="Switch light or dark">◐</button>
+</div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="kicker">Lebanese curriculum · Grade 12 LS</div>
+    <h1>Physics, one chapter at a time</h1>
+    <p>Choose a chapter tab. Each chapter has a lesson with live models, flip cards to revise, and practice sets in the spirit of the official exams — with answers hidden until you need them.</p>
+  </section>
+
+  <div class="chaptabs" role="tablist" id="tabs"></div>
+  <section class="chappanel" id="panel" role="tabpanel"></section>
+</main>
+<footer>Tutoring Centre · Life Sciences Physics · New chapters appear here as the year goes on.</footer>
+
+<script src="assets/js/platform.js"></script>
+<script src="assets/js/chapters.js"></script>
+<script>
+(function () {
+  const list = window.LSP_CHAPTERS.filter((c) => c.status === "live" || window.LSP_SHOW_UPCOMING), tabs = document.getElementById("tabs"), panel = document.getElementById("panel");
+  function render(ch) {
+    tabs.querySelectorAll(".chaptab").forEach((b) => b.setAttribute("aria-selected", b.dataset.id === ch.id ? "true" : "false"));
+    if (ch.status !== "live") { panel.innerHTML = `<div class="soonbox"><h2>${ch.title}</h2><p>Coming soon.</p></div>`; return; }
+    panel.innerHTML = `
+      <div class="ov">
+        <div>
+          <div class="kicker">Chapter</div>
+          <h2>${ch.title}</h2>
+          <p>${ch.blurb}</p>
+          <div class="actions">
+            <a class="btn big" href="${ch.href}">Open the chapter →</a>
+            ${ch.pdf ? `<a class="btn big ghost" href="${ch.pdf}" target="_blank" rel="noopener">⎙ Printable PDF</a>` : ""}
+          </div>
+        </div>
+        <div class="contents">${ch.contents.map(([ic, t, anchor, sub]) =>
+          `<a href="${ch.href}#${anchor}"><span class="ic">${ic}</span><span><b>${t}</b><br><small style="color:var(--muted)">${sub}</small></span></a>`).join("")}</div>
+      </div>`;
+    try { history.replaceState(null, "", "#" + ch.id); } catch (e) {}
+  }
+  list.forEach((ch) => {
+    const b = document.createElement("button");
+    b.className = "chaptab"; b.role = "tab"; b.dataset.id = ch.id;
+    b.innerHTML = ch.title + (ch.status === "live" ? "" : ' <span class="soon">soon</span>');
+    if (ch.status !== "live") b.disabled = true;
+    b.addEventListener("click", () => render(ch));
+    tabs.appendChild(b);
+  });
+  const want = location.hash.slice(1);
+  render(list.find((c) => c.id === want && c.status === "live") || list.find((c) => c.status === "live"));
+})();
+</script>
+</body>
+</html>
