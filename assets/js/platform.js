@@ -111,6 +111,18 @@
     }));
   }
 
+  /* ---------- part solutions (library tests) ---------- */
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-toggle-sol]");
+    if (!b) return;
+    const box = b.parentElement.nextElementSibling;
+    if (!box) return;
+    const open = box.hidden;
+    box.hidden = !open;
+    b.setAttribute("aria-expanded", open ? "true" : "false");
+    b.textContent = open ? "Hide solution" : "Show solution";
+  });
+
   /* ---------- numeric self-check ---------- */
   function initChecks() {
     document.querySelectorAll(".check[data-ans]").forEach((c) => {

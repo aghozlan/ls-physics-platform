@@ -218,3 +218,27 @@ footer{color:var(--muted);font-size:14px;padding:26px 0 40px;text-align:center}
   details.step>.body{display:block}
   body{background:#fff}
 }
+
+/* ---------- library test pages ---------- */
+.rubricline{font-size:15px;color:var(--muted)}
+h4.parth{font-family:var(--head);font-size:17px;margin:16px 0 4px;color:var(--chap);border-top:1px solid var(--line);padding-top:12px}
+table.doc{border-collapse:collapse;margin:8px auto 0;font-size:16px}
+table.doc th,table.doc td{border:1.2px solid var(--ink);padding:5px 10px;text-align:center;min-width:56px}
+table.doc th{background:var(--chap-soft);font-weight:400}
+p.cap{text-align:center;font-weight:700;font-size:14px;color:var(--muted);margin:2px 0 8px}
+.solbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:8px 0 4px}
+.solbar .solmeta{color:var(--muted);font-size:14px}
+.sol{border:1.5px solid var(--ok);background:var(--ok-soft);border-radius:10px;padding:8px;margin:6px 0 4px;overflow-x:auto}
+.sol[hidden]{display:none}
+table.ms{width:100%;border-collapse:collapse;font-size:16px}
+table.ms td{border:1px solid var(--line);padding:6px 8px;vertical-align:top;background:var(--paper)}
+table.ms td:first-child{width:48px;text-align:center;font-family:var(--head);font-weight:800;color:var(--chap)}
+table.ms td.mk{width:52px;text-align:center;font-weight:700;color:var(--muted);vertical-align:middle}
+.libgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:10px}
+.libcard{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--bg);display:flex;flex-direction:column;gap:6px}
+.libcard h3{font-size:18px}
+.libcard .tag{align-self:flex-start;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.libcard p{color:var(--muted);font-size:15px;margin:0}
+.libcard .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:6px}
+.libgroup{margin:6px 0 16px}
+.libgroup>h3{font-size:16px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}

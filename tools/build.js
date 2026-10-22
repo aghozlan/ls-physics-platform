@@ -1,4 +1,6 @@
-// Build every chapter: tools/<chapter>/src.html -> chapters/<chapter>/index.html
+// Build every page:
+//   tools/<chapter>/src.html     -> chapters/<chapter>/index.html
+//   tools/library/<id>/src.html  -> library/<id>/index.html
 // - inlines {{figure}} SVGs from tools/<chapter>/figs
 // - pre-renders all \( \) and \[ \] math with KaTeX (pages need only katex.min.css)
 // - copies tools/<chapter>/*.js next to the page
@@ -11,11 +13,17 @@ try { katex = require("katex"); } catch (e) { katex = require(path.join(__dirnam
 
 const root = path.resolve(__dirname, "..");
 const only = process.argv[2];
-const chapters = fs.readdirSync(__dirname).filter((d) => fs.existsSync(path.join(__dirname, d, "src.html")) && (!only || d === only));
+const jobs = [];
+for (const d of fs.readdirSync(__dirname)) {
+  if (fs.existsSync(path.join(__dirname, d, "src.html"))) jobs.push([d, path.join(__dirname, d), path.join(root, "chapters", d)]);
+}
+const lib = path.join(__dirname, "library");
+if (fs.existsSync(lib)) for (const d of fs.readdirSync(lib)) {
+  if (fs.existsSync(path.join(lib, d, "src.html"))) jobs.push([d, path.join(lib, d), path.join(root, "library", d)]);
+}
 
 let total = 0;
-for (const ch of chapters) {
-  const src = path.join(__dirname, ch);
+for (const [ch, src, outDir] of jobs.filter((j) => !only || j[0] === only)) {
   let html = fs.readFileSync(path.join(src, "src.html"), "utf8");
   html = html.replace(/\{\{([a-z0-9_]+)\}\}/g, (_, n) => fs.readFileSync(path.join(src, "figs", n + ".svg"), "utf8"));
   let errors = 0;
@@ -25,7 +33,6 @@ for (const ch of chapters) {
   };
   html = html.replace(/\\\[([\s\S]+?)\\\]/g, (_, t) => render(t.trim(), true));
   html = html.replace(/\\\(([\s\S]+?)\\\)/g, (_, t) => render(t.trim(), false));
-  const outDir = path.join(root, "chapters", ch);
   fs.mkdirSync(outDir, { recursive: true });
   fs.writeFileSync(path.join(outDir, "index.html"), html);
   for (const f of fs.readdirSync(src)) if (f.endsWith(".js")) fs.copyFileSync(path.join(src, f), path.join(outDir, f));

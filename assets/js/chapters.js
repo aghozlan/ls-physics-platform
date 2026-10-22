@@ -21,6 +21,33 @@ window.LSP_CHAPTERS = [
       ["⑥", "Practice 2", "practice2", "3 exercises · hidden answers"]
     ]
   },
+  { id: "library", title: "Library", status: "live", type: "library" },
   { id: "mechanical-oscillations", title: "Mechanical Oscillations", status: "soon" },
   { id: "electromagnetic-induction", title: "Electromagnetic Induction", status: "soon" }
+];
+
+/* =========================================================
+   Library — exam-preparation resources, grouped by chapter.
+   Add an item here to publish a new resource in the Library tab.
+   ========================================================= */
+window.LSP_LIBRARY = [
+  {
+    group: "Chapter 1 — Energy",
+    items: [
+      {
+        tag: "Test preparation · 20 pts · 1 h 30",
+        title: "Energy — Test Preparation 1",
+        blurb: "The drop tower and a counterweight on stage: energy graphs, derivative of ME → acceleration and nature of motion, time equations, two-body system, spring bumper.",
+        href: "library/energy-test-1/index.html",
+        pdf: "library/energy-test-1/energy_test_preparation_1.pdf"
+      },
+      {
+        tag: "Test preparation · 20 pts · 1 h 30",
+        title: "Energy — Test Preparation 2",
+        blurb: "The baggage chute and the rope swing over the river: kinetic energy theorem, incline with a spring, pendulum, positions where KE = 2 GPE, air resistance.",
+        href: "library/energy-test-2/index.html",
+        pdf: "library/energy-test-2/energy_test_preparation_2.pdf"
+      }
+    ]
+  }
 ];

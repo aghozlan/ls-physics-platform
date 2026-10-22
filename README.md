@@ -15,6 +15,7 @@ Student link (after GitHub Pages is on): `https://aghozlan.github.io/<repo-name>
 | Chapter | Status |
 |---|---|
 | Linear Momentum | live |
+| Library — Energy tests 1 & 2 | live |
 | Mechanical Oscillations | planned |
 | Electromagnetic Induction | planned |
 
@@ -29,6 +30,7 @@ assets/katex/                   math fonts (math is pre-rendered, no CDN needed)
 chapters/<chapter>/index.html   built chapter page (do not edit by hand)
 chapters/<chapter>/*.js         the chapter's live models
 chapters/<chapter>/*.pdf        printable version
+library/<id>/index.html         library resource (built from tools/library/<id>/src.html)
 tools/<chapter>/src.html        chapter source (edit this)
 tools/<chapter>/lm-sims.js      live models source
 tools/<chapter>/figs/*.svg      static figures used in exercises
@@ -45,3 +47,11 @@ tools/build.js                  builds every chapter (renders the math)
 
 Planned chapters stay hidden from students until `status` is `"live"`
 (set `LSP_SHOW_UPCOMING = true` in `chapters.js` to show them as locked tabs).
+
+## Adding a library resource
+
+1. Build the printable sheet (exam layout + answer key), then run
+   `python3 tools/library/make_test_page.py <sheet.html> tools/library/<id> "<title>" "<subtitle>" <pdf-name> <figure ids>`.
+   Each Part gets a "Show solution" button with its rows of the answer key.
+2. `npm run build`, copy the student PDF into `library/<id>/`.
+3. Add the item to `LSP_LIBRARY` in `assets/js/chapters.js`.

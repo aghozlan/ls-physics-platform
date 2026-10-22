@@ -38,6 +38,19 @@
   function render(ch) {
     tabs.querySelectorAll(".chaptab").forEach((b) => b.setAttribute("aria-selected", b.dataset.id === ch.id ? "true" : "false"));
     if (ch.status !== "live") { panel.innerHTML = `<div class="soonbox"><h2>${ch.title}</h2><p>Coming soon.</p></div>`; return; }
+    if (ch.type === "library") {
+      panel.innerHTML = `
+        <div class="kicker">Library</div>
+        <h2 style="font-size:26px;margin-bottom:4px">Exam preparation, chapter by chapter</h2>
+        <p style="color:var(--muted);margin-top:0">Official-exam style tests. Solve each part on paper, then open its detailed solution.</p>` +
+        (window.LSP_LIBRARY || []).map((g) => `
+        <div class="libgroup"><h3>${g.group}</h3><div class="libgrid">${g.items.map((it) => `
+          <div class="libcard"><span class="tag">${it.tag}</span><h3>${it.title}</h3><p>${it.blurb}</p>
+            <div class="actions"><a class="btn" href="${it.href}">Open</a>${it.pdf ? `<a class="btn ghost" href="${it.pdf}" target="_blank" rel="noopener">⎙ PDF</a>` : ""}</div></div>`).join("")}
+        </div></div>`).join("");
+      try { history.replaceState(null, "", "#" + ch.id); } catch (e) {}
+      return;
+    }
     panel.innerHTML = `
       <div class="ov">
         <div>
