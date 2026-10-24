@@ -1,0 +1,43 @@
+rules_version = '2';
+// LS Physics platform: who may read and write what.
+// Paste this whole file in Firebase console → Firestore Database → Rules → Publish.
+service cloud.firestore {
+  match /databases/{db}/documents {
+
+    function signedIn() { return request.auth != null; }
+    function isAdmin() {
+      return signedIn()
+        && request.auth.token.email in ['aghozlan.81@gmail.com']
+        && request.auth.token.email_verified == true;
+    }
+    function me() { return get(/databases/$(db)/documents/members/$(request.auth.uid)).data; }
+    function isApproved() {
+      return signedIn() && exists(/databases/$(db)/documents/members/$(request.auth.uid)) && me().status == 'approved';
+    }
+
+    match /members/{uid} {
+      // a member sees only their own card; the teacher sees everyone
+      allow read: if isAdmin() || (signedIn() && request.auth.uid == uid);
+
+      // first sign-in: a member can only register themself, as "pending"
+      allow create: if isAdmin() || (signedIn() && request.auth.uid == uid
+        && request.resource.data.uid == uid
+        && request.resource.data.status == 'pending'
+        && request.resource.data.sessionEpoch == 0
+        && request.resource.data.visits == 0);
+
+      // a member can only refresh presence fields, never their status or session
+      allow update: if isAdmin() || (signedIn() && request.auth.uid == uid
+        && request.resource.data.diff(resource.data).affectedKeys()
+             .hasOnly(['lastSeen', 'currentPage', 'currentTitle', 'visits']));
+
+      allow delete: if isAdmin();
+    }
+
+    match /visits/{id} {
+      allow create: if isApproved() && request.resource.data.uid == request.auth.uid;
+      allow read, delete: if isAdmin();
+      allow update: if false;
+    }
+  }
+}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard · LS Physics</title>
+<meta name="description" content="Teacher dashboard: members, approvals, blocking and activity of the LS Physics platform.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap">
+<link rel="stylesheet" href="assets/css/platform.css">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="logo" href="index.html"><span class="mark">LS</span><span><b>Dashboard</b><small>Members and activity</small></span></a>
+  <span class="grow"></span>
+  <button class="iconbtn" data-theme-toggle aria-label="Switch light or dark">◐</button>
+  <a class="iconbtn" href="index.html">⌂<span class="hide-sm"> Platform</span></a>
+  <button class="iconbtn" id="signout" type="button" hidden>⏻<span class="hide-sm"> Sign out</span></button>
+</div></header>
+
+<main class="wrap dash">
+  <p id="note" class="authmsg" style="margin-top:20px">Loading…</p>
+  <div id="app" hidden>
+    <section class="tiles">
+      <div class="tile"><span class="lbl">Members</span><b id="tTotal">0</b></div>
+      <div class="tile on"><span class="lbl">Online now</span><b id="tOnline">0</b></div>
+      <div class="tile warn"><span class="lbl">Waiting for approval</span><b id="tPending">0</b></div>
+      <div class="tile bad"><span class="lbl">Blocked</span><b id="tBlocked">0</b></div>
+      <div class="tile"><span class="lbl">Page visits (today)</span><b id="tToday">0</b></div>
+    </section>
+
+    <section class="panelbox">
+      <div class="dash-h">
+        <h2>Members</h2>
+        <div class="seg" role="group" aria-label="Filter">
+          <button data-f="pending" aria-pressed="true">Waiting</button><button data-f="online" aria-pressed="false">Online</button>
+          <button data-f="approved" aria-pressed="false">Approved</button><button data-f="blocked" aria-pressed="false">Blocked</button>
+          <button data-f="all" aria-pressed="false">All</button>
+        </div>
+        <input id="search" class="search" placeholder="Search name or email" aria-label="Search">
+      </div>
+      <div class="tablewrap"><table class="mt" id="members">
+        <thead><tr><th>Member</th><th>Status</th><th>Last seen</th><th>Now on</th><th>Visits</th><th>Joined</th><th>Actions</th></tr></thead>
+        <tbody></tbody>
+      </table></div>
+      <p class="empty" id="emptyM" hidden>Nobody in this list.</p>
+    </section>
+
+    <section class="panelbox">
+      <div class="dash-h"><h2>Recent activity</h2><span class="muted" id="actFor">all members</span><button class="btn ghost small" id="actAll" type="button" hidden>Show everyone</button></div>
+      <div class="tablewrap"><table class="mt" id="visits">
+        <thead><tr><th>When</th><th>Member</th><th>Page</th><th>Device</th></tr></thead>
+        <tbody></tbody>
+      </table></div>
+    </section>
+  </div>
+</main>
+<footer>Only the teacher's account can open this dashboard.</footer>
+
+<div class="modal-back" id="confirm"><div class="modal" role="dialog" aria-modal="true"><h3 id="cTitle"></h3><p id="cText"></p>
+  <div class="actions" style="display:flex;gap:8px;justify-content:flex-end"><button class="btn ghost" id="cNo" type="button">Cancel</button><button class="btn" id="cYes" type="button">Confirm</button></div></div></div>
+
+<script src="assets/js/platform.js"></script>
+<script type="module">
+import { CONFIG, ADMIN_EMAILS, SDK, isConfigured } from "./assets/js/firebase-config.js";
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const ONLINE_MS = 150000;
+
+if (!isConfigured()) {
+  $("note").textContent = "Sign-in is not switched on yet. Fill in assets/js/firebase-config.js (see SECURITY_SETUP.md).";
+} else {
+  const [{ initializeApp }, A, F] = await Promise.all([import(SDK + "firebase-app.js"), import(SDK + "firebase-auth.js"), import(SDK + "firebase-firestore.js")]);
+  const app = initializeApp(CONFIG), auth = A.getAuth(app), db = F.getFirestore(app);
+  let members = [], visits = [], filter = "pending", only = null;
+
+  const ask = (title, text) => new Promise((res) => {
+    $("cTitle").textContent = title; $("cText").textContent = text; $("confirm").classList.add("show");
+    const done = (v) => { $("confirm").classList.remove("show"); $("cYes").onclick = $("cNo").onclick = null; res(v); };
+    $("cYes").onclick = () => done(true); $("cNo").onclick = () => done(false);
+  });
+  const ago = (ts) => {
+    if (!ts) return "—"; const d = Date.now() - ts.toMillis();
+    if (d < 60000) return "just now"; if (d < 3600000) return Math.round(d / 60000) + " min ago";
+    if (d < 86400000) return Math.round(d / 3600000) + " h ago"; return ts.toDate().toLocaleDateString();
+  };
+  const online = (m) => m.status === "approved" && m.lastSeen && Date.now() - m.lastSeen.toMillis() < ONLINE_MS;
+
+  function render() {
+    $("tTotal").textContent = members.length;
+    $("tOnline").textContent = members.filter(online).length;
+    $("tPending").textContent = members.filter((m) => m.status === "pending").length;
+    $("tBlocked").textContent = members.filter((m) => m.status === "blocked").length;
+    const start = new Date(); start.setHours(0, 0, 0, 0);
+    $("tToday").textContent = visits.filter((v) => v.at && v.at.toMillis() >= start.getTime()).length;
+    const q = $("search").value.trim().toLowerCase();
+    const list = members.filter((m) => (filter === "all" || (filter === "online" ? online(m) : m.status === filter)) &&
+      (!q || (m.name || "").toLowerCase().includes(q) || (m.email || "").toLowerCase().includes(q)))
+      .sort((a, b) => (b.lastSeen?.toMillis() || 0) - (a.lastSeen?.toMillis() || 0));
+    $("emptyM").hidden = list.length > 0;
+    $("members").querySelector("tbody").innerHTML = list.map((m) => `
+      <tr data-uid="${esc(m.uid)}">
+        <td><button class="who" data-act="activity">${online(m) ? '<span class="dot"></span>' : ""}<b>${esc(m.name)}</b><br><small>${esc(m.email)}</small></button></td>
+        <td><span class="pill ${esc(m.status)}">${m.status === "pending" ? "waiting" : esc(m.status)}</span></td>
+        <td>${ago(m.lastSeen)}</td>
+        <td><small>${online(m) ? esc(m.currentTitle || m.currentPage) : "—"}</small></td>
+        <td class="num">${m.visits || 0}</td>
+        <td><small>${m.createdAt ? m.createdAt.toDate().toLocaleDateString() : "—"}</small></td>
+        <td class="acts">${ADMIN_EMAILS.includes((m.email || "").toLowerCase()) ? '<span class="muted">teacher</span>' : `${m.status !== "approved" ? '<button class="btn small" data-act="approve">Approve</button>' : ""}
+          ${m.status === "approved" ? '<button class="btn ghost small" data-act="kick">Sign out now</button>' : ""}
+          ${m.status !== "blocked" ? '<button class="btn small danger" data-act="block">Block</button>' : ""}
+          <button class="btn ghost small" data-act="delete" title="Remove this member">✕</button>`}</td>
+      </tr>`).join("");
+    const vs = only ? visits.filter((v) => v.uid === only) : visits;
+    $("visits").querySelector("tbody").innerHTML = vs.slice(0, 150).map((v) => `
+      <tr><td><small>${v.at ? v.at.toDate().toLocaleString() : "…"}</small></td><td>${esc(v.name || v.email)}</td>
+      <td><small>${esc(v.title || v.page)}</small></td><td><small>${esc(v.device)}</small></td></tr>`).join("") || '<tr><td colspan="4" class="muted">No activity yet.</td></tr>';
+  }
+
+  $("members").addEventListener("click", async (e) => {
+    const b = e.target.closest("[data-act]"); if (!b) return;
+    const uid = b.closest("tr").dataset.uid, m = members.find((x) => x.uid === uid), ref = F.doc(db, "members", uid);
+    const who = m.name + " (" + m.email + ")";
+    if (b.dataset.act === "activity") { only = uid; $("actFor").textContent = m.name; $("actAll").hidden = false; render(); $("visits").scrollIntoView({ behavior: "smooth" }); return; }
+    if (b.dataset.act === "approve") return F.updateDoc(ref, { status: "approved" });
+    if (b.dataset.act === "kick" && await ask("Sign out now?", who + " will be signed out of every open page within seconds. They can sign in again.")) return F.updateDoc(ref, { sessionEpoch: F.increment(1) });
+    if (b.dataset.act === "block" && await ask("Block this member?", who + " will be signed out immediately and will not be able to enter again until you approve them.")) return F.updateDoc(ref, { status: "blocked", sessionEpoch: F.increment(1) });
+    if (b.dataset.act === "delete" && await ask("Remove this member?", who + " will be removed from the list. If they sign in again, they will wait for approval.")) return F.deleteDoc(ref);
+  });
+  document.querySelectorAll(".dash-h [data-f]").forEach((b) => b.addEventListener("click", () => {
+    filter = b.dataset.f; document.querySelectorAll(".dash-h [data-f]").forEach((q) => q.setAttribute("aria-pressed", q === b ? "true" : "false")); render();
+  }));
+  $("search").addEventListener("input", render);
+  $("actAll").addEventListener("click", () => { only = null; $("actFor").textContent = "all members"; $("actAll").hidden = true; render(); });
+  $("signout").addEventListener("click", () => A.signOut(auth).then(() => location.replace("login.html?state=signedout")));
+  setInterval(render, 30000);
+
+  A.onAuthStateChanged(auth, (user) => {
+    if (!user) return location.replace("login.html?next=" + encodeURIComponent(location.pathname));
+    if (!ADMIN_EMAILS.includes((user.email || "").toLowerCase())) { $("note").textContent = "This dashboard is for the teacher only."; return; }
+    $("note").hidden = true; $("app").hidden = false; $("signout").hidden = false;
+    F.onSnapshot(F.collection(db, "members"), (s) => { members = s.docs.map((d) => d.data()); render(); },
+      (e) => { $("note").hidden = false; $("note").textContent = "Cannot read members: publish the rules from firestore.rules (" + e.code + ")."; });
+    F.onSnapshot(F.query(F.collection(db, "visits"), F.orderBy("at", "desc"), F.limit(400)), (s) => { visits = s.docs.map((d) => d.data()); render(); });
+  });
+}
+</script>
+</body>
+</html>

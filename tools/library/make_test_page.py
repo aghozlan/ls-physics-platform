@@ -66,6 +66,8 @@ page = f'''<!DOCTYPE html>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap">
 <link rel="stylesheet" href="../../assets/katex/katex.min.css">
 <link rel="stylesheet" href="../../assets/css/platform.css">
+<script>document.documentElement.classList.add("lsp-locked")</script><style>html.lsp-locked body{{visibility:hidden}}</style>
+<script type="module" src="../../assets/js/auth-gate.js"></script>
 </head>
 <body data-chapter="{os.path.basename(out_dir)}">
 <header class="topbar"><div class="wrap">

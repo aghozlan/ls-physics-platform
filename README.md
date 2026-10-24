@@ -55,3 +55,6 @@ Planned chapters stay hidden from students until `status` is `"live"`
    Each Part gets a "Show solution" button with its rows of the answer key.
 2. `npm run build`, copy the student PDF into `library/<id>/`.
 3. Add the item to `LSP_LIBRARY` in `assets/js/chapters.js`.
+
+## Sign-in and dashboard
+Members-only access, teacher approval, block / sign-out and an activity dashboard (`admin.html`). Off until Firebase is configured: see [SECURITY_SETUP.md](SECURITY_SETUP.md).

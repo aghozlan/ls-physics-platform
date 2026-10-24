@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign in · LS Physics</title>
+<meta name="description" content="Sign in to the Tutoring Centre Grade 12 LS Physics platform.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap">
+<link rel="stylesheet" href="assets/css/platform.css">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="logo" href="index.html"><span class="mark">LS</span><span><b>Tutoring Centre</b><small>Grade 12 Life Sciences · Physics</small></span></a>
+  <span class="grow"></span>
+  <button class="iconbtn" data-theme-toggle aria-label="Switch light or dark">◐</button>
+</div></header>
+
+<main class="wrap">
+  <section class="authbox">
+    <div class="kicker">Members only</div>
+    <h1 id="h">Sign in</h1>
+    <p id="msg" class="authmsg">Use your Google account, or your email and a password. New accounts are approved by your teacher.</p>
+
+    <div id="forms">
+      <button class="btn big gbtn" id="google" type="button"><span class="g">G</span> Continue with Google</button>
+      <div class="or"><span>or with email</span></div>
+      <div class="seg authseg" role="group" aria-label="Mode">
+        <button type="button" data-mode="in" aria-pressed="true">Sign in</button>
+        <button type="button" data-mode="up" aria-pressed="false">Create account</button>
+      </div>
+      <form id="f" novalidate>
+        <label class="fld" id="nameRow" hidden>Full name<input id="name" autocomplete="name" maxlength="60"></label>
+        <label class="fld">Email<input id="email" type="email" autocomplete="email" required></label>
+        <label class="fld">Password<input id="pw" type="password" autocomplete="current-password" minlength="6" required></label>
+        <button class="btn big" id="submit" type="submit">Sign in</button>
+        <button class="linkbtn" id="reset" type="button">Forgot your password?</button>
+      </form>
+    </div>
+
+    <div id="waiting" hidden>
+      <p class="authstate">Your account is waiting for your teacher's approval. You can close this page; try again later.</p>
+      <div class="actions"><button class="btn" id="again" type="button">Check again</button><button class="btn ghost" id="out" type="button">Sign out</button></div>
+    </div>
+    <p id="err" class="autherr" role="alert"></p>
+  </section>
+</main>
+<footer>Tutoring Centre · Life Sciences Physics</footer>
+
+<script src="assets/js/platform.js"></script>
+<script type="module">
+import { CONFIG, ADMIN_EMAILS, SDK, isConfigured } from "./assets/js/firebase-config.js";
+const $ = (id) => document.getElementById(id);
+const qs = new URLSearchParams(location.search);
+const next = (() => { const n = qs.get("next") || ""; return n.startsWith("/") && !n.startsWith("//") ? n : "index.html"; })();
+const STATES = {
+  pending: "Your account is waiting for your teacher's approval.",
+  blocked: "Access to this account has been stopped by your teacher. Contact your teacher if you think this is a mistake.",
+  ended: "Your session was ended by your teacher. You can sign in again.",
+  signedout: "You are signed out.",
+  error: "The sign-in service could not be reached. Check your connection and try again."
+};
+if (qs.get("state") && STATES[qs.get("state")]) $("msg").textContent = STATES[qs.get("state")];
+
+if (!isConfigured()) {
+  $("msg").textContent = "Sign-in is not switched on yet: the platform is open to everyone.";
+  $("forms").hidden = true;
+} else {
+  const [{ initializeApp }, A, F] = await Promise.all([import(SDK + "firebase-app.js"), import(SDK + "firebase-auth.js"), import(SDK + "firebase-firestore.js")]);
+  const app = initializeApp(CONFIG), auth = A.getAuth(app), db = F.getFirestore(app);
+  let mode = "in";
+  const err = (e) => {
+    const c = (e && e.code) || "";
+    $("err").textContent = c.includes("invalid-credential") || c.includes("wrong-password") || c.includes("user-not-found") ? "Email or password is not correct."
+      : c.includes("email-already-in-use") ? "An account already exists with this email. Use “Sign in”."
+      : c.includes("weak-password") ? "Choose a password of at least 6 characters."
+      : c.includes("invalid-email") ? "This email address is not valid."
+      : c.includes("popup-closed") ? "" : "Something went wrong: " + (c || e);
+  };
+  document.querySelectorAll(".authseg [data-mode]").forEach((b) => b.addEventListener("click", () => {
+    mode = b.dataset.mode;
+    document.querySelectorAll(".authseg [data-mode]").forEach((q) => q.setAttribute("aria-pressed", q === b ? "true" : "false"));
+    $("nameRow").hidden = mode !== "up"; $("submit").textContent = mode === "up" ? "Create account" : "Sign in";
+    $("pw").autocomplete = mode === "up" ? "new-password" : "current-password"; $("err").textContent = "";
+  }));
+  $("google").addEventListener("click", () => A.signInWithPopup(auth, new A.GoogleAuthProvider()).catch(err));
+  $("f").addEventListener("submit", async (e) => {
+    e.preventDefault(); $("err").textContent = "";
+    const email = $("email").value.trim(), pw = $("pw").value;
+    try {
+      if (mode === "up") {
+        const name = $("name").value.trim();
+        if (name.length < 3) { $("err").textContent = "Write your full name so your teacher can recognise you."; return; }
+        const cred = await A.createUserWithEmailAndPassword(auth, email, pw);
+        await A.updateProfile(cred.user, { displayName: name });
+        await A.sendEmailVerification(cred.user).catch(() => {});
+      } else {
+        await A.signInWithEmailAndPassword(auth, email, pw);
+      }
+    } catch (x) { err(x); }
+  });
+  $("reset").addEventListener("click", async () => {
+    const email = $("email").value.trim();
+    if (!email) { $("err").textContent = "Write your email first, then press “Forgot your password?”."; return; }
+    await A.sendPasswordResetEmail(auth, email).then(() => { $("err").textContent = "A reset link was sent to " + email + "."; }).catch(err);
+  });
+  $("out").addEventListener("click", () => A.signOut(auth).then(() => location.replace("login.html?state=signedout")));
+  $("again").addEventListener("click", () => location.reload());
+
+  A.onAuthStateChanged(auth, async (user) => {
+    if (!user) { $("forms").hidden = false; $("waiting").hidden = true; return; }
+    const ref = F.doc(db, "members", user.uid);
+    let s = await F.getDoc(ref);
+    if (!s.exists()) {
+      await F.setDoc(ref, {
+        uid: user.uid, email: user.email || "", name: user.displayName || (user.email || "").split("@")[0],
+        photo: user.photoURL || "", provider: (user.providerData[0] || {}).providerId || "password",
+        status: ADMIN_EMAILS.includes((user.email || "").toLowerCase()) ? "approved" : "pending", sessionEpoch: 0, visits: 0,
+        createdAt: F.serverTimestamp(), lastSeen: F.serverTimestamp(), currentPage: "", currentTitle: ""
+      });
+      s = await F.getDoc(ref);
+    }
+    const st = s.data().status;
+    if (st === "approved") return location.replace(next);
+    if (st === "blocked") { await A.signOut(auth); $("msg").textContent = STATES.blocked; return; }
+    $("h").textContent = "Almost there"; $("msg").textContent = "Signed in as " + (user.email || "");
+    $("forms").hidden = true; $("waiting").hidden = false;
+  });
+}
+</script>
+</body>
+</html>
