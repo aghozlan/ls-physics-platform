@@ -118,7 +118,7 @@ table.t td:first-child{white-space:nowrap}
 .sim{background:var(--sim-bg);border:1px solid var(--line);border-radius:12px;padding:12px;margin:12px 0}
 .sim-h{display:flex;align-items:center;gap:8px;font-family:var(--head);font-weight:800;font-size:15px;color:var(--accent);margin-bottom:6px}
 .sim-h:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
-.sim canvas,.sim svg.live{display:block;width:100%;background:var(--paper);border:1px solid var(--line);border-radius:8px;touch-action:none}
+.sim canvas,.sim svg.live{display:block;width:100%;background:var(--paper);border:1px solid var(--line);border-radius:8px;touch-action:pan-y pinch-zoom;-webkit-user-select:none;user-select:none}
 .controls{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin-top:10px}
 .ctl{display:flex;flex-direction:column;gap:2px;min-width:150px;flex:1}
 .ctl label{font-size:14px;color:var(--muted);display:flex;justify-content:space-between;gap:8px}

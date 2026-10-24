@@ -24,13 +24,29 @@
     if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = 1.5; ctx.stroke(); }
   }
   function pointer(cv, cb) {
+    // Drag only when the finger/mouse starts on a handle; anywhere else the page scrolls normally.
     let drag = null;
     const pos = (e) => { const r = cv.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
-    cv.addEventListener("pointerdown", (e) => { const p = pos(e); drag = cb.down(p[0], p[1]); if (drag) { cv.setPointerCapture(e.pointerId); e.preventDefault(); } });
-    cv.addEventListener("pointermove", (e) => { const p = pos(e); if (drag) { cb.move(drag, p[0], p[1]); e.preventDefault(); } else cv.style.cursor = cb.hover && cb.hover(p[0], p[1]) ? "grab" : "default"; });
-    const up = () => { drag = null; };
-    cv.addEventListener("pointerup", up); cv.addEventListener("pointercancel", up);
+    const hit = (x, y, touch) => cb.down(x, y, touch ? 34 : 22);
+    cv.addEventListener("touchstart", (e) => {
+      const t0 = e.touches[0], r = cv.getBoundingClientRect();
+      if (e.touches.length === 1 && hit(t0.clientX - r.left, t0.clientY - r.top, true)) e.preventDefault(); // stop scroll only on a handle
+    }, { passive: false });
+    cv.addEventListener("touchmove", (e) => { if (drag) e.preventDefault(); }, { passive: false });
+    cv.addEventListener("pointerdown", (e) => {
+      const p = pos(e); drag = hit(p[0], p[1], e.pointerType === "touch");
+      if (drag) { try { cv.setPointerCapture(e.pointerId); } catch (_) {} e.preventDefault(); cv.style.cursor = "grabbing"; }
+    });
+    cv.addEventListener("pointermove", (e) => {
+      const p = pos(e);
+      if (drag) { cb.move(drag, Math.max(0, Math.min(cv.clientWidth, p[0])), Math.max(0, Math.min(cv.clientHeight, p[1]))); e.preventDefault(); }
+      else cv.style.cursor = hit(p[0], p[1], false) ? "grab" : "default";
+    });
+    const up = () => { drag = null; cv.style.cursor = "default"; };
+    cv.addEventListener("pointerup", up); cv.addEventListener("pointercancel", up); cv.addEventListener("lostpointercapture", up);
   }
+  // keep a point inside the drawing area (margin in px)
+  const clampPt = (x, y, w, h, m) => [Math.max(m, Math.min(w - m, x)), Math.max(m, Math.min(h - m, y))];
 
   /* ------------------------------------------------ 1. feel it */
   sims["sim-feel"] = function (root) {
@@ -104,20 +120,34 @@
       text(ctx, "Px = " + F(P.x), o.x + P.x * S / 2, o.y + (P.y >= 0 ? 16 : -16), c.chap, 13, "center", true);
       text(ctx, "Py = " + F(P.y), o.x - 8, o.y - P.y * S / 2, c.chap, 13, "right", true);
       L.arrow(ctx, o.x, o.y, o.x + P.x * S, o.y - P.y * S, c.ink, 4.5);
-      text(ctx, "P = m v", o.x + P.x * S + 10, o.y - P.y * S - 14, c.ink, 14, "left", true);
+      { const tx = o.x + P.x * S, ty = o.y - P.y * S, right = tx > g.w - 90;
+        text(ctx, "P = m v", tx + (right ? -10 : 10), Math.max(12, ty - 14), c.ink, 14, right ? "right" : "left", true); }
       L.arrow(ctx, o.x, o.y, o.x + v.x * S, o.y - v.y * S, c.acc, 2.2);
       ctx.fillStyle = c.acc; ctx.beginPath(); ctx.arc(o.x + v.x * S, o.y - v.y * S, 8, 0, 7); ctx.globalAlpha = 0.25; ctx.fill(); ctx.globalAlpha = 1;
-      text(ctx, "v (drag me)", o.x + v.x * S + 12, o.y - v.y * S + 14, c.acc, 13, "left", true);
+      { const tx = o.x + v.x * S, ty = o.y - v.y * S, right = tx > g.w - 110;
+        text(ctx, "v (drag me)", tx + (right ? -12 : 12), Math.min(g.h - 10, ty + 16), c.acc, 13, right ? "right" : "left", true); }
       ctx.fillStyle = c.ink; ctx.beginPath(); ctx.arc(o.x, o.y, 6, 0, 7); ctx.fill();
       const ang = Math.atan2(v.y, v.x) * 180 / Math.PI;
       chips(out, [["v =", F(Math.hypot(v.x, v.y)) + " m/s"], ["angle =", F(ang, 0) + "°"], ["P<sub>x</sub> =", F(P.x)], ["P<sub>y</sub> =", F(P.y)], ["P =", F(Math.hypot(P.x, P.y)) + " kg·m/s", "good"]]);
     }
+    // largest factor k <= 1 so that the tip of k*m*v (and of v) stays inside the frame
+    function fit() {
+      const o = O(), M = 16, f = Math.max(1, m);
+      let k = 1;
+      const tx = v.x * S * f, ty = v.y * S * f;
+      if (tx > 0) k = Math.min(k, (g.w - M - o.x) / tx); if (tx < 0) k = Math.min(k, (M - o.x) / tx);
+      if (ty > 0) k = Math.min(k, (o.y - M) / ty); if (ty < 0) k = Math.min(k, (o.y - (g.h - M)) / ty);
+      if (k < 1) { v.x = Math.floor(v.x * k * 2) / 2; v.y = Math.floor(v.y * k * 2) / 2; }
+    }
     pointer(cv, {
-      hover: (x, y) => { const o = O(); return Math.hypot(x - (o.x + v.x * S), y - (o.y - v.y * S)) < 20; },
-      down: (x, y) => { const o = O(); return Math.hypot(x - (o.x + v.x * S), y - (o.y - v.y * S)) < 26 ? 1 : null; },
-      move: (_, x, y) => { const o = O(); v.x = Math.round(((x - o.x) / S) * 2) / 2; v.y = Math.round(((o.y - y) / S) * 2) / 2; v.x = Math.max(-o.x / S + 0.5, Math.min((g.w - o.x) / S - 1, v.x)); v.y = Math.max(-(g.h - o.y) / S + 0.5, Math.min(o.y / S - 0.5, v.y)); draw(); }
+      down: (x, y, r) => { const o = O(); return Math.hypot(x - (o.x + v.x * S), y - (o.y - v.y * S)) < r ? 1 : null; },
+      move: (_, x, y) => {
+        const o = O(); [x, y] = clampPt(x, y, g.w, g.h, 16);
+        v.x = Math.round(((x - o.x) / S) * 2) / 2; v.y = Math.round(((o.y - y) / S) * 2) / 2;
+        fit(); draw();
+      }
     });
-    L.bindRange(root, "m", (x) => { m = x; draw(); });
+    L.bindRange(root, "m", (x) => { m = x; if (g) { fit(); draw(); } });
     function size() { g = L.canvas(cv, +cv.dataset.aspect); draw(); }
     size();
     return { resize: size, draw };
@@ -139,22 +169,27 @@
         text(ctx, "P" + (i + 1), b.x + p[i].x * S + 12, b.y - p[i].y * S - 8, c.ink, 15, "left", true);
         text(ctx, "(" + (i + 1) + ")", b.x - 4, b.y + 22, c.muted, 13, "center");
       });
-      const s = { x: g.w * 0.66, y: g.h * 0.8 };
-      const e1 = { x: s.x + p[0].x * S, y: s.y - p[0].y * S }, e2 = { x: e1.x + p[1].x * S, y: e1.y - p[1].y * S };
+      // head-to-tail sum, scaled down if needed so it stays inside the right part of the frame
+      const pts = [[0, 0], [p[0].x, p[0].y], [p[0].x + p[1].x, p[0].y + p[1].y]];
+      const xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]);
+      const spanX = (Math.max(...xs) - Math.min(...xs)) * S || 1, spanY = (Math.max(...ys) - Math.min(...ys)) * S || 1;
+      const kc = Math.min(1, (g.w * 0.4 - 30) / spanX, (g.h - 50) / spanY);
+      const s = { x: g.w * 0.58 + 15 - Math.min(...xs) * S * kc, y: 25 + Math.max(...ys) * S * kc };
+      const e1 = { x: s.x + p[0].x * S * kc, y: s.y - p[0].y * S * kc }, e2 = { x: e1.x + p[1].x * S * kc, y: e1.y - p[1].y * S * kc };
+      if (kc < 1) text(ctx, "(drawn at " + Math.round(kc * 100) + "% scale)", g.w - 10, g.h - 10, c.muted, 11.5, "right");
       ctx.setLineDash([5, 4]); L.arrow(ctx, s.x, s.y, e1.x, e1.y, c.muted, 1.8); L.arrow(ctx, e1.x, e1.y, e2.x, e2.y, c.muted, 1.8); ctx.setLineDash([]);
       L.arrow(ctx, s.x, s.y, e2.x, e2.y, c.chap, 4.5);
       ctx.fillStyle = c.chap; ctx.beginPath(); ctx.arc(s.x, s.y, 4, 0, 7); ctx.fill();
       text(ctx, "P sys", (s.x + e2.x) / 2 - 10, (s.y + e2.y) / 2 - 10, c.chap, 15, "right", true);
-      text(ctx, "head-to-tail sum", s.x, s.y + 18, c.muted, 12.5, "center");
+      text(ctx, "head-to-tail sum", g.w * 0.78, g.h - 26, c.muted, 12.5, "center");
       const P = { x: p[0].x + p[1].x, y: p[0].y + p[1].y }, mag = Math.hypot(P.x, P.y);
       chips(out, [["P<sub>1</sub> = (" + F(p[0].x) + "; " + F(p[0].y) + ")", ""], ["P<sub>2</sub> = (" + F(p[1].x) + "; " + F(p[1].y) + ")", ""],
         ["P<sub>sys</sub> = (" + F(P.x) + "; " + F(P.y) + ")", ""], ["|P<sub>sys</sub>| =", F(mag) + " kg·m/s", mag < 0.3 ? "good" : ""],
         ...(mag < 0.3 ? [["🎉 Challenge solved: the parts move, the system does not", "", "good"]] : [])]);
     }
     pointer(cv, {
-      hover: (x, y) => bases().some((b, i) => Math.hypot(x - (b.x + p[i].x * S), y - (b.y - p[i].y * S)) < 18),
-      down: (x, y) => { const B = bases(); for (let i = 0; i < 2; i++) if (Math.hypot(x - (B[i].x + p[i].x * S), y - (B[i].y - p[i].y * S)) < 24) return { i }; return null; },
-      move: (d, x, y) => { const b = bases()[d.i]; p[d.i].x = Math.round(((x - b.x) / S) * 2) / 2; p[d.i].y = Math.round(((b.y - y) / S) * 2) / 2; draw(); }
+      down: (x, y, r) => { const B = bases(); for (let i = 0; i < 2; i++) if (Math.hypot(x - (B[i].x + p[i].x * S), y - (B[i].y - p[i].y * S)) < r) return { i }; return null; },
+      move: (d, x, y) => { const b = bases()[d.i]; [x, y] = clampPt(x, y, g.w, g.h, 16); p[d.i].x = Math.round(((x - b.x) / S) * 2) / 2; p[d.i].y = Math.round(((b.y - y) / S) * 2) / 2; draw(); }
     });
     function size() { g = L.canvas(cv, +cv.dataset.aspect); draw(); }
     size();
@@ -248,14 +283,17 @@
       const a = v.al * Math.PI / 180, vx = v.v0 * Math.cos(a), vy0 = v.v0 * Math.sin(a), T = 2 * vy0 / G;
       const R = vx * T, Hm = vy0 * vy0 / (2 * G);
       const top = 10, trajH = g.h * 0.6, l = 30, r = g.w - 20;
-      const s = Math.min((r - l) / (R * 1.05), (trajH - 34) / (Hm * 1.15));
+      // ONE scale for every launch (v0 up to 20 m/s): a faster launch really goes farther and faster on screen
+      const XMAX = 42, YMAX = 21;
+      const s = Math.min((r - l) / XMAX, (trajH - 34) / YMAX);
       const X = (x) => l + x * s, Y = (y) => top + trajH - 14 - y * s;
       ctx.strokeStyle = c.muted; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(10, Y(0)); ctx.lineTo(g.w - 10, Y(0)); ctx.stroke();
+      for (let m5 = 0; m5 <= XMAX; m5 += 5) { ctx.beginPath(); ctx.moveTo(X(m5), Y(0)); ctx.lineTo(X(m5), Y(0) + 5); ctx.stroke(); text(ctx, m5 + " m", X(m5), Y(0) + 13, c.muted, 10.5, "center"); }
       ctx.setLineDash([5, 5]); ctx.strokeStyle = c.line; ctx.lineWidth = 1.5; ctx.beginPath();
       for (let k = 0; k <= 60; k++) { const tt = (T * k) / 60; const x = vx * tt, y = vy0 * tt - 0.5 * G * tt * tt; k ? ctx.lineTo(X(x), Y(y)) : ctx.moveTo(X(x), Y(y)); }
       ctx.stroke(); ctx.setLineDash([]);
       const tt = Math.min(t, T), x = vx * tt, y = vy0 * tt - 0.5 * G * tt * tt, Px = v.m * vx, Py = v.m * (vy0 - G * tt);
-      const sp = 70 / (v.m * v.v0);
+      const sp = 95 / (v.m * 20);   // arrow length proportional to the speed
       L.arrow(ctx, X(x), Y(y), X(x) + Px * sp, Y(y), c.chap, 3);
       if (Math.abs(Py) * sp > 3) L.arrow(ctx, X(x), Y(y), X(x), Y(y) - Py * sp, c.chap, 3);
       L.arrow(ctx, X(x), Y(y), X(x) + Px * sp, Y(y) - Py * sp, c.ink, 3.5);
@@ -265,9 +303,9 @@
       if (Math.abs(tt - T / 2) < T * 0.03) text(ctx, "top: Py = 0", X(x), Y(y) - 22, c.acc, 13, "center", true);
       // graphs
       const gy0 = top + trajH + 10, gh = g.h - gy0 - 22, gw = (g.w - 60) / 2;
-      const Pmax = v.m * v.v0 * 1.05;
+      const Pmax = v.m * 20 * 1.05, TMAX = 4;
       [["Px (kg·m/s)", (q) => Px], ["Py (kg·m/s)", (q) => v.m * (vy0 - G * q)]].forEach(([lab, f], i) => {
-        const gx = 40 + i * (gw + 20), Xg = (q) => gx + (q / T) * (gw - 10), Yg = (p) => gy0 + gh / 2 - (p / Pmax) * (gh / 2 - 4);
+        const gx = 40 + i * (gw + 20), Xg = (q) => gx + (q / TMAX) * (gw - 10), Yg = (p) => gy0 + gh / 2 - (p / Pmax) * (gh / 2 - 4);
         rrect(ctx, gx - 6, gy0 - 4, gw + 6, gh + 8, 6, null, c.line);
         ctx.strokeStyle = c.muted; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(gx, Yg(0)); ctx.lineTo(gx + gw - 4, Yg(0)); ctx.moveTo(gx, gy0); ctx.lineTo(gx, gy0 + gh); ctx.stroke();
         text(ctx, lab, gx + 6, gy0 + 9, c.muted, 12, "left", true); text(ctx, "t", gx + gw - 6, Yg(0) - 9, c.muted, 12, "right");
@@ -282,7 +320,7 @@
     }
     const btn = root.querySelector('[data-act="play"]');
     function loop(ts) {
-      if (!run) return; const dt = last ? Math.min(0.05, (ts - last) / 1000) : 0; last = ts; t += dt * 0.8;
+      if (!run) return; const dt = last ? Math.min(0.05, (ts - last) / 1000) : 0; last = ts; t += dt;
       const T = draw(); if (t >= T) { run = false; t = T; draw(); btn.textContent = "▶ Launch"; return; }
       requestAnimationFrame(loop);
     }
