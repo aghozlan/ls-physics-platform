@@ -6,12 +6,12 @@
    (These values are not secret: Firebase protects data with the rules in firestore.rules.)
    ========================================================= */
 export const CONFIG = {
-  apiKey: "PASTE_HERE",
-  authDomain: "PASTE_HERE",
-  projectId: "PASTE_HERE",
-  storageBucket: "PASTE_HERE",
-  messagingSenderId: "PASTE_HERE",
-  appId: "PASTE_HERE"
+  apiKey: "AIzaSyCRG5oMyNYp-U0cr3T6Im-aZuVsQUvNXf4",
+  authDomain: "ls-physics.firebaseapp.com",
+  projectId: "ls-physics",
+  storageBucket: "ls-physics.firebasestorage.app",
+  messagingSenderId: "173868748014",
+  appId: "1:173868748014:web:9cd5f09b78dd5eb67f77ff"
 };
 
 export const ADMIN_EMAILS = ["aghozlan.81@gmail.com"];
