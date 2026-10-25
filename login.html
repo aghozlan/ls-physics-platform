@@ -85,7 +85,16 @@ if (!isConfigured()) {
     $("nameRow").hidden = mode !== "up"; $("submit").textContent = mode === "up" ? "Create account" : "Sign in";
     $("pw").autocomplete = mode === "up" ? "new-password" : "current-password"; $("err").textContent = "";
   }));
-  $("google").addEventListener("click", () => A.signInWithPopup(auth, new A.GoogleAuthProvider()).catch(err));
+  let busy = false;
+  $("google").addEventListener("click", async () => {
+    if (busy) return; busy = true; $("google").disabled = true; $("err").textContent = "";
+    try { await A.signInWithPopup(auth, new A.GoogleAuthProvider()); }
+    catch (x) {
+      const c = (x && x.code) || "";
+      if (c.includes("popup-blocked") || c.includes("operation-not-supported")) A.signInWithRedirect(auth, new A.GoogleAuthProvider()).catch(err);
+      else if (!c.includes("cancelled-popup-request") && !c.includes("popup-closed")) err(x);
+    } finally { busy = false; $("google").disabled = false; }
+  });
   $("f").addEventListener("submit", async (e) => {
     e.preventDefault(); $("err").textContent = "";
     const email = $("email").value.trim(), pw = $("pw").value;
@@ -111,6 +120,7 @@ if (!isConfigured()) {
 
   A.onAuthStateChanged(auth, async (user) => {
     if (!user) { $("forms").hidden = false; $("waiting").hidden = true; return; }
+    $("err").textContent = "";
     const ref = F.doc(db, "members", user.uid);
     let s = await F.getDoc(ref);
     if (!s.exists()) {
