@@ -7,8 +7,8 @@ export const PAGES = [
   "href": "chapters/linear-momentum/index.html",
   "blocks": 35,
   "check": {
-   "iv": "0bvs/NPKBULOD6lh",
-   "ct": "nFM2grUvxTnPU3ffMVz/5y6XkOBuBQ=="
+   "iv": "8AtdiybyKxlc9d4i",
+   "ct": "XWLuMwogdy8YBLuD8DeiXsaQLpyzUQ=="
   }
  },
  {
@@ -17,8 +17,8 @@ export const PAGES = [
   "href": "library/energy-test-1/index.html",
   "blocks": 6,
   "check": {
-   "iv": "I0ka64SdUAwoVBlM",
-   "ct": "GNDg/gQJet8cbZeZrdvNdIt7OMW29A=="
+   "iv": "zAJIeSLgvH/jOgQY",
+   "ct": "0kUg7VwymmRZI+vReytiB1G4KsyU/Q=="
   }
  },
  {
@@ -27,8 +27,8 @@ export const PAGES = [
   "href": "library/energy-test-2/index.html",
   "blocks": 5,
   "check": {
-   "iv": "kZ3CDacerkOa3JcX",
-   "ct": "c2FAElo6KLJ77YTLCMgSfxofjNZY4w=="
+   "iv": "jeW6WzHEWke9viQV",
+   "ct": "qy6Z/2YciO16rxXAzO5khylybj/Nag=="
   }
  },
  {
@@ -37,8 +37,52 @@ export const PAGES = [
   "href": "library/lm-practice-1/index.html",
   "blocks": 9,
   "check": {
-   "iv": "oZzqmBIOOYpcnTgi",
-   "ct": "Kimxw+QTUm4f60W04exF0v69FRhR2Q=="
+   "iv": "zIRh8RIeVepnD4cZ",
+   "ct": "sRy80PUT1T4oaCXcV4lxUpBu8kU4gg=="
+  }
+ },
+ {
+  "id": "lm-2024-1-2",
+  "title": "2024 · 1st session · Ex 2 — Motion of a block after collision",
+  "parent": "Linear Momentum — Official Exams",
+  "href": "official/linear-momentum/index.html#e2024-1-2",
+  "blocks": 6,
+  "check": {
+   "iv": "3gaV6TNdRc3yFESs",
+   "ct": "73/wh0gvIeK/iSr+2vFqRtGJf0jT9g=="
+  }
+ },
+ {
+  "id": "lm-2023-1-1",
+  "title": "2023 · 1st session · Ex 1 — Determination of the force of friction",
+  "parent": "Linear Momentum — Official Exams",
+  "href": "official/linear-momentum/index.html#e2023-1-1",
+  "blocks": 7,
+  "check": {
+   "iv": "bC9CSG8uYfBoNag8",
+   "ct": "1BeQ/VYR4qfKbEVaaEGkkpKc1rd+Dw=="
+  }
+ },
+ {
+  "id": "lm-2022-2-2",
+  "title": "2022 · 2nd session · Ex 2 — Motion of a hockey puck",
+  "parent": "Linear Momentum — Official Exams",
+  "href": "official/linear-momentum/index.html#e2022-2-2",
+  "blocks": 7,
+  "check": {
+   "iv": "MKLFXqs+CQdRlbcs",
+   "ct": "gb+OYd1RmyFbCwvvEg3rrv+h803I1w=="
+  }
+ },
+ {
+  "id": "lm-2022-1-1",
+  "title": "2022 · 1st session · Ex 1 — Verification of the principle of interaction",
+  "parent": "Linear Momentum — Official Exams",
+  "href": "official/linear-momentum/index.html#e2022-1-1",
+  "blocks": 5,
+  "check": {
+   "iv": "0oE3uqqiHA2x+B8f",
+   "ct": "YkuCt0zDDbsHccM9NlEP49ZXyYMNCA=="
   }
  },
  {
@@ -48,8 +92,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2021-2-2",
   "blocks": 6,
   "check": {
-   "iv": "K1ijDhyPXYEnYyGq",
-   "ct": "TxpffJam1KEjFIXpS6jtYpzSAzB+Bw=="
+   "iv": "2YdeWASKg4zm5EsJ",
+   "ct": "/JvZi1LcqFEcFsz8MAy7sSPQAr5MMg=="
   }
  },
  {
@@ -59,8 +103,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2016-2-2",
   "blocks": 6,
   "check": {
-   "iv": "ugbLaUL47MNWsALN",
-   "ct": "SW/JfD3oqvY7kgvQQfGH88ONbNOLAQ=="
+   "iv": "CPHuRdsJWgtyTT6I",
+   "ct": "iIMUdyd9CcDeb2atu6Lq6DpYul4+0A=="
   }
  },
  {
@@ -70,8 +114,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2015-1-1",
   "blocks": 6,
   "check": {
-   "iv": "egUN13KYF9zDgyvm",
-   "ct": "SA38/bpe1VOaL3SXP1Yl+qPXN7zwYA=="
+   "iv": "mM7Btp2xlH8Ujkks",
+   "ct": "VpIsesxQEaY8XhElYwa5VDPKUaYTsw=="
   }
  },
  {
@@ -81,8 +125,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2012-2-1",
   "blocks": 9,
   "check": {
-   "iv": "6ZZnQj5vlyFSWIgC",
-   "ct": "e54Sg9YfbPN+e6UH9SWHn+x+pLKQGQ=="
+   "iv": "K96/2x02XEeWQuyq",
+   "ct": "gpHqKzw4/JJQA61W9/hfC8mHpnSrZg=="
   }
  },
  {
@@ -92,8 +136,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2010-2-3",
   "blocks": 8,
   "check": {
-   "iv": "cxPYir1bsgVr4wzO",
-   "ct": "H8izpWypXIqgeWB/c0LEDWj7hvPSDQ=="
+   "iv": "yHFunymlnJIamowy",
+   "ct": "Pxc+zf5hTBci8cIJtBwUIBG30rrCSQ=="
   }
  },
  {
@@ -103,8 +147,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2007-2-1",
   "blocks": 4,
   "check": {
-   "iv": "9GNQlNVnjIfE1O8r",
-   "ct": "xgF0TA24xKbhJ9Y2JY0jUhQ7gpdWpg=="
+   "iv": "BYL37mho+EonHHDp",
+   "ct": "ZeG1kqYH9Hg4RpXpqgGm1qR+EQX1yA=="
   }
  },
  {
@@ -114,8 +158,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2006-1-1",
   "blocks": 5,
   "check": {
-   "iv": "W0FDZOxjBel92GEd",
-   "ct": "DZFjXgTEPcCeJGy5hJnjXMxRw9LBgQ=="
+   "iv": "4lNUcK+zKC8YnsAb",
+   "ct": "8TWAbXB/fPejQKid12pMCsstu2vYBw=="
   }
  },
  {
@@ -125,8 +169,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2004-2-1",
   "blocks": 4,
   "check": {
-   "iv": "LMl5SAP0yUKeefxX",
-   "ct": "dPjYh9/0qW4aFx1Ne6LmKLLtcP5Ehw=="
+   "iv": "M4DTVf4UXXNB6LXZ",
+   "ct": "8vOv8SpSyj89Jcd0YPpowJT1iSExDA=="
   }
  },
  {
@@ -136,8 +180,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2002-2-1",
   "blocks": 7,
   "check": {
-   "iv": "T6q+/DLmXyvWFmmL",
-   "ct": "qR+tQsB1m4cv31QRvsmGKLJYqkDCxg=="
+   "iv": "BT69M8Ouiy+bPjo7",
+   "ct": "2B0hwZgY75bd39JjuoZaGgf1JZa+mA=="
   }
  },
  {
@@ -147,8 +191,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2002-1-1",
   "blocks": 7,
   "check": {
-   "iv": "SYFZJAGbRPlaVunU",
-   "ct": "owNV5nvuT6jXM8hwYDVuyP11T44GLA=="
+   "iv": "alUmqM5yOYHYUppO",
+   "ct": "6b+L3iDKkSNwIa70ZsFUAR3HZX0L+w=="
   }
  },
  {
@@ -158,8 +202,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2001-2-1",
   "blocks": 5,
   "check": {
-   "iv": "tsiCmJLm5xAh1NFU",
-   "ct": "MtF9ooWLo2VDnAecoi/FpPkBj+1l0w=="
+   "iv": "DOtFn9q2lgw/igVE",
+   "ct": "6FUocUaoSrKKxlhuridNXcopi7splQ=="
   }
  },
  {
@@ -169,8 +213,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#esample-2-2",
   "blocks": 6,
   "check": {
-   "iv": "AnVxh//vN7DlsqoI",
-   "ct": "3G1lKlPCYwiv8b/v4lpGjPvZz6+3Ag=="
+   "iv": "f3qXgBOVbMqXsJB/",
+   "ct": "4N3A/cU2MoIMChHmYR96zQz2nOHhdQ=="
   }
  }
 ];

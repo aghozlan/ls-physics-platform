@@ -402,3 +402,5 @@ a.excard:hover{transform:translateY(-2px);border-color:var(--chap)}
 .exnums span{font-size:13px;color:var(--muted)}
 .excard.soon{opacity:.6;box-shadow:none}
 @media (max-width:640px){.oe-body figure{overflow-x:auto}.oe-body figure svg{min-width:540px}}
+.omk{display:block;margin-top:6px;font-size:13px;font-weight:700;color:var(--ok);text-align:right}
+.okey{color:var(--ok)}

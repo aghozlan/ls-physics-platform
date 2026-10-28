@@ -72,9 +72,9 @@ window.LSP_OFFICIAL = [
   {
     chapter: "Chapter 2", title: "Linear Momentum", status: "live",
     href: "official/linear-momentum/index.html",
-    exercises: 12, span: "2001–2021 + CRDP sample", questions: 73,
+    exercises: 16, span: "2001–2024 + CRDP sample", questions: 98,
     skills: ["Newton II", "Conservation", "Elastic or not", "Explosion", "Interaction", "Centre of mass", "Projectile", "With energy"],
-    note: "2022–2025 sessions coming next"
+    note: "2022–2024 with the official marking schemes"
   },
   { chapter: "Chapter 1", title: "Energy", status: "soon" },
   { chapter: "Chapter 4", title: "Mechanical Oscillations", status: "soon" }
