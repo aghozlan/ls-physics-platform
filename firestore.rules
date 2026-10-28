@@ -34,6 +34,17 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
+    // solutions released by the teacher: holds the key of one page
+    match /release/{page} {
+      allow read: if isApproved() || isAdmin();
+      allow write: if isAdmin();
+    }
+
+    // the teacher's solutions passphrase: teacher only
+    match /vault/{id} {
+      allow read, write: if isAdmin();
+    }
+
     match /visits/{id} {
       allow create: if isApproved() && request.resource.data.uid == request.auth.uid;
       allow read, delete: if isAdmin();

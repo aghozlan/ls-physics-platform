@@ -49,6 +49,23 @@
       <p class="empty" id="emptyM" hidden>Nobody in this list.</p>
     </section>
 
+    <section class="panelbox" id="solutions">
+      <div class="dash-h"><h2>Solutions &amp; marking schemes</h2><span class="muted">locked for students until you release them</span></div>
+      <div id="vault" class="vaultbox" hidden>
+        <input id="pass" class="search" type="password" autocomplete="off" placeholder="Solutions passphrase (one-time setup)" aria-label="Solutions passphrase">
+        <button class="btn small" id="passGo" type="button">Unlock controls</button>
+        <span class="muted" id="passMsg"></span>
+      </div>
+      <div class="vaultbox" id="bulk" hidden>
+        <button class="btn small" id="relAll" type="button">Release all</button>
+        <button class="btn ghost small" id="lockAll" type="button">Lock all</button>
+      </div>
+      <div class="tablewrap"><table class="mt" id="sols">
+        <thead><tr><th>Page</th><th>Answers</th><th>Students can see</th></tr></thead>
+        <tbody></tbody>
+      </table></div>
+    </section>
+
     <section class="panelbox">
       <div class="dash-h"><h2>Recent activity</h2><span class="muted" id="actFor">all members</span><button class="btn ghost small" id="actAll" type="button" hidden>Show everyone</button></div>
       <div class="tablewrap"><table class="mt" id="visits">
@@ -66,6 +83,8 @@
 <script src="assets/js/platform.js"></script>
 <script type="module">
 import { CONFIG, ADMIN_EMAILS, SDK, isConfigured } from "./assets/js/firebase-config.js";
+import { PAGES } from "./assets/js/solution-pages.js";
+import { deriveKey, decrypt } from "./assets/js/solutions.js";
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const ONLINE_MS = 150000;
@@ -138,6 +157,48 @@ if (!isConfigured()) {
   $("signout").addEventListener("click", () => A.signOut(auth).then(() => location.replace("login.html?state=signedout")));
   setInterval(render, 30000);
 
+
+  // ---------- solutions: release / lock per page
+  let pass = null, released = {};
+  const renderSols = () => {
+    $("sols").querySelector("tbody").innerHTML = PAGES.map((p) => `
+      <tr class="solrow"><td><a href="${esc(p.href)}" target="_blank" rel="noopener"><b>${esc(p.title)}</b></a></td><td class="num">${p.blocks}</td>
+      <td><label class="switch"><input type="checkbox" data-page="${esc(p.id)}" ${released[p.id] ? "checked" : ""} ${pass ? "" : "disabled"}>
+      <span>${released[p.id] ? "Released" : "Locked"}</span></label></td></tr>`).join("");
+    $("bulk").hidden = !pass;
+  };
+  const setPage = async (id, on) => {
+    const ref = F.doc(db, "release", id);
+    if (on) await F.setDoc(ref, { open: true, key: await deriveKey(pass, id), at: F.serverTimestamp() });
+    else await F.deleteDoc(ref);
+  };
+  const solErr = (e) => { $("passMsg").textContent = "Could not save: publish the latest firestore.rules (" + (e.code || e) + ")."; $("vault").hidden = false; };
+  $("sols").addEventListener("change", (e) => {
+    const c = e.target.closest("[data-page]"); if (!c) return;
+    setPage(c.dataset.page, c.checked).catch(solErr);
+  });
+  $("relAll").addEventListener("click", async () => { if (await ask("Release all solutions?", "Every signed-in student will be able to open all answers and marking schemes.")) PAGES.forEach((p) => setPage(p.id, true).catch(solErr)); });
+  $("lockAll").addEventListener("click", () => PAGES.forEach((p) => setPage(p.id, false).catch(solErr)));
+  const tryPass = async (p) => {
+    if (!PAGES.length) return false;
+    try { return (await decrypt(await deriveKey(p, PAGES[0].id), PAGES[0].check)) === "lsp-ok"; } catch (e) { return false; }
+  };
+  $("passGo").addEventListener("click", async () => {
+    const p = $("pass").value.trim(); $("passMsg").textContent = "Checking…";
+    if (!(await tryPass(p))) { $("passMsg").textContent = "This passphrase does not match."; return; }
+    try { await F.setDoc(F.doc(db, "vault", "solutions"), { passphrase: p, at: F.serverTimestamp() }); } catch (e) { return solErr(e); }
+    pass = p; $("vault").hidden = true; $("passMsg").textContent = ""; renderSols();
+  });
+  async function startSolutions() {
+    renderSols();
+    try {
+      const v = await F.getDoc(F.doc(db, "vault", "solutions"));
+      if (v.exists() && await tryPass(v.data().passphrase)) pass = v.data().passphrase; else $("vault").hidden = false;
+    } catch (e) { $("vault").hidden = false; $("passMsg").textContent = "Publish the latest firestore.rules to use this section."; }
+    renderSols();
+    F.onSnapshot(F.collection(db, "release"), (s) => { released = {}; s.docs.forEach((d) => { if (d.data().open) released[d.id] = true; }); renderSols(); }, () => {});
+  }
+
   A.onAuthStateChanged(auth, (user) => {
     if (!user) return location.replace("login.html?next=" + encodeURIComponent(location.pathname));
     if (!ADMIN_EMAILS.includes((user.email || "").toLowerCase())) { $("note").textContent = "This dashboard is for the teacher only."; return; }
@@ -145,6 +206,7 @@ if (!isConfigured()) {
     F.onSnapshot(F.collection(db, "members"), (s) => { members = s.docs.map((d) => d.data()); render(); },
       (e) => { $("note").hidden = false; $("note").textContent = "Cannot read members: publish the rules from firestore.rules (" + e.code + ")."; });
     F.onSnapshot(F.query(F.collection(db, "visits"), F.orderBy("at", "desc"), F.limit(400)), (s) => { visits = s.docs.map((d) => d.data()); render(); });
+    startSolutions();
   });
 }
 </script>

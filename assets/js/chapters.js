@@ -32,6 +32,18 @@ window.LSP_CHAPTERS = [
    ========================================================= */
 window.LSP_LIBRARY = [
   {
+    group: "Chapter 2 — Linear Momentum",
+    items: [
+      {
+        tag: "Practice sheet · 20 pts · 2 h",
+        title: "Linear Momentum — Practice Sheet",
+        blurb: "Air-track bumpers, a fireworks shell and a curling shot: conservation and centre of mass, elastic or not, ΣF = dP/dt from a graph, principle of interaction, parabolic motion and explosion.",
+        href: "library/lm-practice-1/index.html",
+        pdf: "library/lm-practice-1/linear_momentum_practice_1.pdf"
+      }
+    ]
+  },
+  {
     group: "Chapter 1 — Energy",
     items: [
       {

@@ -79,7 +79,7 @@ page = f'''<!DOCTYPE html>
 </div></header>
 <main class="wrap">
 <section class="hero">
-  <div class="kicker">Library · Chapter 1 — Energy</div>
+  <div class="kicker">Library · {os.environ.get("LSP_KICKER", "Chapter 1 — Energy")}</div>
   <h1>{title}</h1>
   <p>{subtitle}. {" · ".join(meta)}. Solve each part on paper first, then open its solution.</p>
   <p class="rubricline">{rubric}</p>

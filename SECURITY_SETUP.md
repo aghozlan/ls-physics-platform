@@ -41,6 +41,13 @@ Open the site, sign in with Google as **aghozlan.81@gmail.com**. You are approve
 | Forget an account | **✕** (if they come back they wait for approval again) |
 | See who is on and where | **Online** filter, "Now on" column, Recent activity (tap a name for their history) |
 
+## Solutions and marking schemes
+All answers on the platform (chapter practice sets and every Library sheet) are **encrypted** inside the pages and stay locked for students.
+- Dashboard → **Solutions & marking schemes**: one switch per page, plus **Release all** / **Lock all**. A change reaches open pages within seconds.
+- First time only: type the **solutions passphrase** (Claude gave it to you; keep it safe, it is also needed to add future sheets).
+- You always see the solutions yourself (green "Teacher view" line).
+- After any change of `firestore.rules`, paste the file again in Firebase → Firestore → Rules → **Publish**.
+
 ## What this protects, honestly
 - Every page is hidden until the visitor is signed in **and** approved by you; strangers only see the sign-in page.
 - Students cannot approve themselves, change their status or read other students' data: the database rules forbid it on Google's servers, not just in the page.

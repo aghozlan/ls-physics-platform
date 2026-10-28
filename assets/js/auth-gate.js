@@ -6,6 +6,7 @@
    - teacher blocks you or presses "Sign out now" -> signed out within seconds
    ========================================================= */
 import { CONFIG, ADMIN_EMAILS, SDK, isConfigured } from "./firebase-config.js";
+import { lockNow, initSolutions } from "./solutions.js";
 
 const ROOT = new URL("../../", import.meta.url).href;
 const reveal = () => document.documentElement.classList.remove("lsp-locked");
@@ -14,6 +15,7 @@ const go = (state) => {
   location.replace(ROOT + "login.html?" + (state ? "state=" + state + "&" : "") + "next=" + next);
 };
 
+lockNow();
 if (!isConfigured()) {
   reveal();
 } else {
@@ -49,6 +51,7 @@ if (!isConfigured()) {
       if (m.status !== "approved") { await A.signOut(auth); return go("blocked"); }
 
       // approved: show the page, log the visit, keep presence alive
+      initSolutions({ db, F, isAdmin: ADMIN_EMAILS.includes((user.email || "").toLowerCase()) }).catch((e) => console.warn(e));
       reveal();
       epoch = m.sessionEpoch || 0;
       const page = location.pathname.replace(/\/index\.html$/, "/"), title = document.title;

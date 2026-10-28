@@ -305,3 +305,18 @@ table.mt .acts{white-space:nowrap}table.mt .acts .btn{margin:2px 2px 2px 0}
   #members td:nth-child(3)::before{content:"Last seen: "}
   #members .acts{grid-column:1/-1;min-width:0}
 }
+
+/* ---------- solutions lock ---------- */
+.lockmsg{display:none;align-items:center;gap:6px;font-size:14.5px;color:var(--muted);background:var(--accent-soft);border-radius:8px;padding:6px 10px}
+html.sol-locked .lockmsg{display:inline-flex}
+html.sol-locked [data-toggle-sol],html.sol-locked [data-show="ans"],html.sol-locked [data-reveal-all],html.sol-locked .solmeta{display:none}
+.teacherview{margin:14px 0 0;padding:8px 12px;border-radius:9px;background:var(--ok-soft);color:var(--ok);font-size:14.5px;font-weight:700}
+.solrow td:first-child a{color:inherit}
+.switch{position:relative;display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-weight:700;font-size:14px}
+.switch input{appearance:none;width:44px;height:24px;border-radius:99px;background:var(--line);position:relative;cursor:pointer;transition:background .15s;margin:0}
+.switch input::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.3);transition:left .15s}
+.switch input:checked{background:var(--ok)}
+.switch input:checked::after{left:23px}
+.switch input:disabled{opacity:.5;cursor:default}
+.vaultbox{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:4px 0 12px}
+.vaultbox .search{flex:1;min-width:220px}
