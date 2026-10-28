@@ -3,3 +3,5 @@ node_modules/
 *.png
 .DS_Store
 tools/.solutions-passphrase
+tools/**/src.html
+tools/**/print_src.html

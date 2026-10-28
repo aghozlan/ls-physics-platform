@@ -58,3 +58,12 @@ Planned chapters stay hidden from students until `status` is `"live"`
 
 ## Sign-in and dashboard
 Members-only access, teacher approval, block / sign-out and an activity dashboard (`admin.html`). Off until Firebase is configured: see [SECURITY_SETUP.md](SECURITY_SETUP.md).
+
+## Editing sources (answers stay private)
+The editable sources (`tools/**/src.html`) contain the answers, so they are **not** in this public repo: they live encrypted in `tools/sources.vault`.
+```
+echo "<solutions passphrase>" > tools/.solutions-passphrase   # never committed
+node tools/vault.js open     # restore the sources
+node tools/build.js          # build pages (answers encrypted per page)
+node tools/vault.js seal     # re-encrypt the sources before committing
+```
