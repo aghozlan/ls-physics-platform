@@ -53,6 +53,24 @@
       try { history.replaceState(null, "", "#" + ch.id); } catch (e) {}
       return;
     }
+    if (ch.type === "exams") {
+      panel.innerHTML = `
+        <div class="kicker">Official exams</div>
+        <h2 style="font-size:26px;margin-bottom:4px">Every official exam exercise, chapter by chapter</h2>
+        <p style="color:var(--muted);margin-top:0">Lebanese LS official exams as they were set, with clean figures, a skills map and your own progress. Solutions open when your teacher releases them.</p>
+        <div class="exgrid">` + (window.LSP_OFFICIAL || []).map((b) => b.status === "live" ? `
+          <a class="excard" href="${b.href}">
+            <span class="tag">${b.chapter}</span><h3>${b.title}</h3>
+            <div class="exnums"><div><b>${b.exercises}</b><span>exercises</span></div><div><b>${b.questions}</b><span>questions</span></div></div>
+            <p>${b.span}</p>
+            <div class="oe-tags">${b.skills.map((k) => `<span class="sk">${k}</span>`).join("")}</div>
+            ${b.note ? `<small class="muted">${b.note}</small>` : ""}
+            <span class="btn" style="align-self:flex-start;margin-top:auto">Open the bank →</span>
+          </a>` : `
+          <div class="excard soon"><span class="tag">${b.chapter}</span><h3>${b.title}</h3><p class="muted">Coming soon.</p></div>`).join("") + `</div>`;
+      try { history.replaceState(null, "", "#" + ch.id); } catch (e) {}
+      return;
+    }
     panel.innerHTML = `
       <div class="ov">
         <div>

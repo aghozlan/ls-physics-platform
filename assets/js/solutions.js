@@ -33,37 +33,45 @@ export async function initSolutions({ db, F, isAdmin }) {
   const root = document.documentElement;
   addNotices();
 
-  const lock = () => {
-    root.classList.add("sol-locked");
-    document.querySelectorAll("[data-sol]").forEach((d) => { d.innerHTML = ""; d.hidden = true; });
-    document.querySelectorAll("[data-toggle-sol]").forEach((b) => { b.textContent = "Show solution"; b.setAttribute("aria-expanded", "false"); });
-    document.querySelectorAll('[data-show="ans"]').forEach((b) => { b.textContent = "Show answer"; b.setAttribute("aria-expanded", "false"); });
+  // units: one per page, or one per exercise when the page has groups
+  const units = box.groups
+    ? Object.entries(box.groups).map(([id, b]) => ({ id, box: b, scope: document.querySelector(`[data-lock="${id}"]`) || root, sel: `[data-sol][data-group="${id}"]` }))
+    : [{ id: box.page, box, scope: root, sel: "[data-sol]" }];
+  if (box.groups) root.classList.remove("sol-locked");
+
+  const lock = (u) => {
+    u.scope.classList.add("sol-locked");
+    document.querySelectorAll(u.sel).forEach((d) => { d.innerHTML = ""; d.hidden = true; });
+    u.scope.querySelectorAll("[data-toggle-sol]").forEach((b) => { b.textContent = "Show solution"; b.setAttribute("aria-expanded", "false"); });
+    u.scope.querySelectorAll('[data-show="ans"]').forEach((b) => { b.textContent = "Show answer"; b.setAttribute("aria-expanded", "false"); });
   };
-  const unlock = async (keyB64) => {
+  const unlock = async (u, keyB64) => {
     try {
-      const map = JSON.parse(await decrypt(keyB64, box));
-      document.querySelectorAll("[data-sol]").forEach((d) => { d.innerHTML = map[d.dataset.sol] || ""; });
-      root.classList.remove("sol-locked");
-    } catch (e) { console.warn("solutions: wrong key", e); lock(); }
+      const map = JSON.parse(await decrypt(keyB64, u.box));
+      document.querySelectorAll(u.sel).forEach((d) => { d.innerHTML = map[d.dataset.sol] || ""; });
+      u.scope.classList.remove("sol-locked");
+    } catch (e) { console.warn("solutions: wrong key", e); lock(u); }
   };
 
   if (isAdmin) {
     try {
       const v = await F.getDoc(F.doc(db, "vault", "solutions"));
       if (v.exists() && v.data().passphrase) {
-        await unlock(await deriveKey(v.data().passphrase, box.page));
+        for (const u of units) await unlock(u, await deriveKey(v.data().passphrase, u.id));
         const s = document.createElement("p");
         s.className = "teacherview";
-        s.textContent = "Teacher view: you always see the solutions. Students see them only after you release this page in the dashboard.";
+        s.textContent = "Teacher view: you always see the solutions. Students see them only after you release them in the dashboard.";
         (document.querySelector("main") || document.body).prepend(s);
         return;
       }
     } catch (e) { /* fall back to the student behaviour */ }
   }
-  lock();
-  F.onSnapshot(F.doc(db, "release", box.page),
-    (s) => (s.exists() && s.data().open && s.data().key ? unlock(s.data().key) : lock()),
-    () => lock());
+  for (const u of units) {
+    lock(u);
+    F.onSnapshot(F.doc(db, "release", u.id),
+      (s) => (s.exists() && s.data().open && s.data().key ? unlock(u, s.data().key) : lock(u)),
+      () => lock(u));
+  }
 }
 
 function addNotices() {

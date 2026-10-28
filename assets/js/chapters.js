@@ -22,6 +22,7 @@ window.LSP_CHAPTERS = [
     ]
   },
   { id: "library", title: "Library", status: "live", type: "library" },
+  { id: "official", title: "Official Exams", status: "live", type: "exams" },
   { id: "mechanical-oscillations", title: "Mechanical Oscillations", status: "soon" },
   { id: "electromagnetic-induction", title: "Electromagnetic Induction", status: "soon" }
 ];
@@ -62,4 +63,19 @@ window.LSP_LIBRARY = [
       }
     ]
   }
+];
+
+/* =========================================================
+   Official exams — one bank per chapter (official/<id>/index.html).
+   ========================================================= */
+window.LSP_OFFICIAL = [
+  {
+    chapter: "Chapter 2", title: "Linear Momentum", status: "live",
+    href: "official/linear-momentum/index.html",
+    exercises: 12, span: "2001–2021 + CRDP sample", questions: 73,
+    skills: ["Newton II", "Conservation", "Elastic or not", "Explosion", "Interaction", "Centre of mass", "Projectile", "With energy"],
+    note: "2022–2025 sessions coming next"
+  },
+  { chapter: "Chapter 1", title: "Energy", status: "soon" },
+  { chapter: "Chapter 4", title: "Mechanical Oscillations", status: "soon" }
 ];

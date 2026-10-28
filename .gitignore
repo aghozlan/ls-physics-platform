@@ -5,3 +5,4 @@ node_modules/
 tools/.solutions-passphrase
 tools/**/src.html
 tools/**/print_src.html
+tools/official/_gen/

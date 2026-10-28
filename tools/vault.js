@@ -12,7 +12,7 @@ const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) =>
   e.isDirectory() ? (e.name === "node_modules" ? [] : walk(path.join(d, e.name))) : [path.join(d, e.name)]);
 if (process.argv[2] === "seal") {
   const files = {};
-  for (const f of walk(dir)) if (/(^|\/)(print_)?src\.html$/.test(f)) files[path.relative(dir, f)] = fs.readFileSync(f, "utf8");
+  for (const f of walk(dir)) if (/(^|\/)(print_)?src\.html$/.test(f) || /official\/_gen\/[^/]+\.py$/.test(f)) files[path.relative(dir, f)] = fs.readFileSync(f, "utf8");
   const iv = crypto.randomBytes(12), c = crypto.createCipheriv("aes-256-gcm", key, iv);
   const ct = Buffer.concat([c.update(JSON.stringify(files), "utf8"), c.final(), c.getAuthTag()]);
   fs.writeFileSync(out, JSON.stringify({ iv: iv.toString("base64"), ct: ct.toString("base64") }));

@@ -160,13 +160,25 @@ if (!isConfigured()) {
 
   // ---------- solutions: release / lock per page
   let pass = null, released = {};
-  const renderSols = () => {
-    $("sols").querySelector("tbody").innerHTML = PAGES.map((p) => `
-      <tr class="solrow"><td><a href="${esc(p.href)}" target="_blank" rel="noopener"><b>${esc(p.title)}</b></a></td><td class="num">${p.blocks}</td>
+  const row = (p, sub) => `
+      <tr class="solrow${sub ? " sub" : ""}"><td><a href="${esc(p.href)}" target="_blank" rel="noopener">${sub ? esc(p.title) : `<b>${esc(p.title)}</b>`}</a></td><td class="num">${p.blocks}</td>
       <td><label class="switch"><input type="checkbox" data-page="${esc(p.id)}" ${released[p.id] ? "checked" : ""} ${pass ? "" : "disabled"}>
-      <span>${released[p.id] ? "Released" : "Locked"}</span></label></td></tr>`).join("");
+      <span>${released[p.id] ? "Released" : "Locked"}</span></label></td></tr>`;
+  const renderSols = () => {
+    const parents = [...new Set(PAGES.filter((p) => p.parent).map((p) => p.parent))];
+    $("sols").querySelector("tbody").innerHTML = PAGES.filter((p) => !p.parent).map((p) => row(p, false)).join("") +
+      parents.map((par) => {
+        const kids = PAGES.filter((p) => p.parent === par), on = kids.filter((k) => released[k.id]).length;
+        return `<tr class="solgroup"><td colspan="2"><b>${esc(par)}</b> <span class="muted">· ${on}/${kids.length} released</span></td>
+          <td>${pass ? `<button class="btn small" data-grp="${esc(par)}" data-on="1" type="button">All</button> <button class="btn ghost small" data-grp="${esc(par)}" data-on="0" type="button">None</button>` : ""}</td></tr>` +
+          kids.map((k) => row(k, true)).join("");
+      }).join("");
     $("bulk").hidden = !pass;
   };
+  $("sols").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-grp]"); if (!b) return;
+    PAGES.filter((p) => p.parent === b.dataset.grp).forEach((p) => setPage(p.id, b.dataset.on === "1").catch(solErr));
+  });
   const setPage = async (id, on) => {
     const ref = F.doc(db, "release", id);
     if (on) await F.setDoc(ref, { open: true, key: await deriveKey(pass, id), at: F.serverTimestamp() });
