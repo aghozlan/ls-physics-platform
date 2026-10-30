@@ -40,13 +40,14 @@
           <button data-f="approved" aria-pressed="false">Approved</button><button data-f="blocked" aria-pressed="false">Blocked</button>
           <button data-f="all" aria-pressed="false">All</button>
         </div>
-        <input id="search" class="search" placeholder="Search name or email" aria-label="Search">
+        <input id="search" class="search" type="search" name="lsp-member-filter" autocomplete="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-1p-ignore placeholder="Search name or email" aria-label="Search members" readonly>
       </div>
       <div class="tablewrap"><table class="mt" id="members">
         <thead><tr><th>Member</th><th>Status</th><th>Last seen</th><th>Now on</th><th>Visits</th><th>Joined</th><th>Actions</th></tr></thead>
         <tbody></tbody>
       </table></div>
       <p class="empty" id="emptyM" hidden>Nobody in this list.</p>
+      <p class="empty" id="emptyQ" hidden>No member matches “<b id="qText"></b>”. <button class="btn ghost small" id="clearQ" type="button">Clear search</button></p>
     </section>
 
     <section class="panelbox" id="solutions">
@@ -119,7 +120,8 @@ if (!isConfigured()) {
     const list = members.filter((m) => (filter === "all" || (filter === "online" ? online(m) : m.status === filter)) &&
       (!q || (m.name || "").toLowerCase().includes(q) || (m.email || "").toLowerCase().includes(q)))
       .sort((a, b) => (b.lastSeen?.toMillis() || 0) - (a.lastSeen?.toMillis() || 0));
-    $("emptyM").hidden = list.length > 0;
+    $("emptyM").hidden = list.length > 0 || !!q;
+    $("emptyQ").hidden = list.length > 0 || !q; $("qText").textContent = q;
     $("members").querySelector("tbody").innerHTML = list.map((m) => `
       <tr data-uid="${esc(m.uid)}">
         <td><button class="who" data-act="activity">${online(m) ? '<span class="dot"></span>' : ""}<b>${esc(m.name)}</b><br><small>${esc(m.email)}</small></button></td>
@@ -152,7 +154,13 @@ if (!isConfigured()) {
   document.querySelectorAll(".dash-h [data-f]").forEach((b) => b.addEventListener("click", () => {
     filter = b.dataset.f; document.querySelectorAll(".dash-h [data-f]").forEach((q) => q.setAttribute("aria-pressed", q === b ? "true" : "false")); render();
   }));
-  $("search").addEventListener("input", render);
+  // Chrome's password manager may auto-fill this box: start read-only and empty, unlock on focus
+  const sb = $("search");
+  sb.addEventListener("focus", () => sb.removeAttribute("readonly"));
+  const wipe = () => { if (document.activeElement !== sb && sb.value) { sb.value = ""; render(); } };
+  setTimeout(wipe, 300); setTimeout(wipe, 1500);
+  sb.addEventListener("input", render);
+  $("clearQ").addEventListener("click", () => { sb.value = ""; render(); sb.focus(); });
   $("actAll").addEventListener("click", () => { only = null; $("actFor").textContent = "all members"; $("actAll").hidden = true; render(); });
   $("signout").addEventListener("click", () => A.signOut(auth).then(() => location.replace("login.html?state=signedout")));
   setInterval(render, 30000);
