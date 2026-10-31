@@ -7,8 +7,18 @@ export const PAGES = [
   "href": "chapters/linear-momentum/index.html",
   "blocks": 35,
   "check": {
-   "iv": "8AtdiybyKxlc9d4i",
-   "ct": "XWLuMwogdy8YBLuD8DeiXsaQLpyzUQ=="
+   "iv": "vpq26YqvOIjwVtfn",
+   "ct": "DiSYa0T7ud5TEXs9r7yjUKH07vUNoQ=="
+  }
+ },
+ {
+  "id": "mechanical-oscillations",
+  "title": "Mechanical Oscillations — chapter practice sets",
+  "href": "chapters/mechanical-oscillations/index.html",
+  "blocks": 34,
+  "check": {
+   "iv": "CmT+LFWcRB/JZbQg",
+   "ct": "uCS5OcP9VntgEFKmF1W+BvtfjeRxTg=="
   }
  },
  {
@@ -17,8 +27,8 @@ export const PAGES = [
   "href": "library/energy-test-1/index.html",
   "blocks": 6,
   "check": {
-   "iv": "zAJIeSLgvH/jOgQY",
-   "ct": "0kUg7VwymmRZI+vReytiB1G4KsyU/Q=="
+   "iv": "6OlpP86+AgCxsc84",
+   "ct": "TiVUJ44bzKl6anjnvunhGnV/f5JfIg=="
   }
  },
  {
@@ -27,8 +37,8 @@ export const PAGES = [
   "href": "library/energy-test-2/index.html",
   "blocks": 5,
   "check": {
-   "iv": "jeW6WzHEWke9viQV",
-   "ct": "qy6Z/2YciO16rxXAzO5khylybj/Nag=="
+   "iv": "xV5bkg0FipcK35Wb",
+   "ct": "+H8wblzghP08SFizd56hCNXCLJVBWQ=="
   }
  },
  {
@@ -37,8 +47,8 @@ export const PAGES = [
   "href": "library/lm-practice-1/index.html",
   "blocks": 9,
   "check": {
-   "iv": "zIRh8RIeVepnD4cZ",
-   "ct": "sRy80PUT1T4oaCXcV4lxUpBu8kU4gg=="
+   "iv": "9OOHP3Sy3V7VT5uk",
+   "ct": "tGnV+jXcCzAxvXzDrAwVJBPEmkRxeg=="
   }
  },
  {
@@ -48,8 +58,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2024-1-2",
   "blocks": 6,
   "check": {
-   "iv": "3gaV6TNdRc3yFESs",
-   "ct": "73/wh0gvIeK/iSr+2vFqRtGJf0jT9g=="
+   "iv": "1a3ORhN2Jt8Mls5n",
+   "ct": "KOV+s5sCZClr8zNti0HioM8cT5SNjw=="
   }
  },
  {
@@ -59,8 +69,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2023-1-1",
   "blocks": 7,
   "check": {
-   "iv": "bC9CSG8uYfBoNag8",
-   "ct": "1BeQ/VYR4qfKbEVaaEGkkpKc1rd+Dw=="
+   "iv": "uwgfWbM6ptFgWuWq",
+   "ct": "NIiNEllgvu6odo5cjh2ijykpVblj8w=="
   }
  },
  {
@@ -70,8 +80,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2022-2-2",
   "blocks": 7,
   "check": {
-   "iv": "MKLFXqs+CQdRlbcs",
-   "ct": "gb+OYd1RmyFbCwvvEg3rrv+h803I1w=="
+   "iv": "sXnWokmMX82LrrVe",
+   "ct": "s7IECYlPNzgSC8qnTHat10gVoJ01eQ=="
   }
  },
  {
@@ -81,8 +91,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2022-1-1",
   "blocks": 5,
   "check": {
-   "iv": "0oE3uqqiHA2x+B8f",
-   "ct": "YkuCt0zDDbsHccM9NlEP49ZXyYMNCA=="
+   "iv": "hIRwyI2LBbF/Emdm",
+   "ct": "jpCNRgxbWkLogLbgo+/uKyT+ROYlqw=="
   }
  },
  {
@@ -92,8 +102,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2021-2-2",
   "blocks": 6,
   "check": {
-   "iv": "2YdeWASKg4zm5EsJ",
-   "ct": "/JvZi1LcqFEcFsz8MAy7sSPQAr5MMg=="
+   "iv": "Cp9zzCEjg6kvVJH8",
+   "ct": "WlXfJ3yo9GfC0zU1BHmxUjRzsYM5Bg=="
   }
  },
  {
@@ -103,8 +113,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2016-2-2",
   "blocks": 6,
   "check": {
-   "iv": "CPHuRdsJWgtyTT6I",
-   "ct": "iIMUdyd9CcDeb2atu6Lq6DpYul4+0A=="
+   "iv": "yEqC6iKUBCZlmLQ9",
+   "ct": "aLsR+9wqTKSZeDIXCd1wcqMFUyX0WA=="
   }
  },
  {
@@ -114,8 +124,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2015-1-1",
   "blocks": 6,
   "check": {
-   "iv": "mM7Btp2xlH8Ujkks",
-   "ct": "VpIsesxQEaY8XhElYwa5VDPKUaYTsw=="
+   "iv": "YzJDtLl7CTiH5cBZ",
+   "ct": "f8rEfrUBEF6UnMuOeoawWE1gC09GMw=="
   }
  },
  {
@@ -125,8 +135,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2012-2-1",
   "blocks": 9,
   "check": {
-   "iv": "K96/2x02XEeWQuyq",
-   "ct": "gpHqKzw4/JJQA61W9/hfC8mHpnSrZg=="
+   "iv": "3qZzhL1VxOx6k2N+",
+   "ct": "JHMF/IgGho/KeJO/+MjUstCMOmROfw=="
   }
  },
  {
@@ -136,8 +146,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2010-2-3",
   "blocks": 8,
   "check": {
-   "iv": "yHFunymlnJIamowy",
-   "ct": "Pxc+zf5hTBci8cIJtBwUIBG30rrCSQ=="
+   "iv": "O13ul9e+lyCXQxtx",
+   "ct": "O5QqENnHL77XeJf47iiNnZXyvnsk+g=="
   }
  },
  {
@@ -147,8 +157,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2007-2-1",
   "blocks": 4,
   "check": {
-   "iv": "BYL37mho+EonHHDp",
-   "ct": "ZeG1kqYH9Hg4RpXpqgGm1qR+EQX1yA=="
+   "iv": "ntId4Z57zc0+/i/W",
+   "ct": "7439/zyygqkSPRFwhgoe5st7GaTfLg=="
   }
  },
  {
@@ -158,8 +168,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2006-1-1",
   "blocks": 5,
   "check": {
-   "iv": "4lNUcK+zKC8YnsAb",
-   "ct": "8TWAbXB/fPejQKid12pMCsstu2vYBw=="
+   "iv": "ZOPP8XV85hya+dNB",
+   "ct": "s1iE3kjfE+LDEZaJVqtQXHr+jMxtwQ=="
   }
  },
  {
@@ -169,8 +179,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2004-2-1",
   "blocks": 4,
   "check": {
-   "iv": "M4DTVf4UXXNB6LXZ",
-   "ct": "8vOv8SpSyj89Jcd0YPpowJT1iSExDA=="
+   "iv": "DngOe0s0mjWumkGC",
+   "ct": "C1IOTzarYPoCmgyVqhGKAc3XaRATxw=="
   }
  },
  {
@@ -180,8 +190,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2002-2-1",
   "blocks": 7,
   "check": {
-   "iv": "BT69M8Ouiy+bPjo7",
-   "ct": "2B0hwZgY75bd39JjuoZaGgf1JZa+mA=="
+   "iv": "H7DGoWHMyAGbeSLO",
+   "ct": "ibSPBBCM98XFDHWityBLS0ALyMGe/A=="
   }
  },
  {
@@ -191,8 +201,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2002-1-1",
   "blocks": 7,
   "check": {
-   "iv": "alUmqM5yOYHYUppO",
-   "ct": "6b+L3iDKkSNwIa70ZsFUAR3HZX0L+w=="
+   "iv": "jLjPAR/y0hc1A4LP",
+   "ct": "tXLWCeuDAHFPC414gfnmk5AsP+bjOA=="
   }
  },
  {
@@ -202,8 +212,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2001-2-1",
   "blocks": 5,
   "check": {
-   "iv": "DOtFn9q2lgw/igVE",
-   "ct": "6FUocUaoSrKKxlhuridNXcopi7splQ=="
+   "iv": "DqQjh++Bz79H41+H",
+   "ct": "KSkdrY+WSLiLWbq/imh6GXA4wNfnNA=="
   }
  },
  {
@@ -213,8 +223,250 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#esample-2-2",
   "blocks": 6,
   "check": {
-   "iv": "f3qXgBOVbMqXsJB/",
-   "ct": "4N3A/cU2MoIMChHmYR96zQz2nOHhdQ=="
+   "iv": "hH52PFpBcqkM+Chm",
+   "ct": "OUfp5dIPARB285vTjJMKzTgEsTABsg=="
+  }
+ },
+ {
+  "id": "mo-2022-2-1",
+  "title": "2022 · 2nd session · Ex 1 — Effect of the launching speed on the amplitude",
+  "parent": "Mechanical Oscillations — Official Exams",
+  "href": "official/mechanical-oscillations/index.html#e2022-2-1",
+  "blocks": 9,
+  "check": {
+   "iv": "6YL3onoaJcKEVZr0",
+   "ct": "zUAsTTV5qu8Oup4XW1uYp9nhQRynTg=="
+  }
+ },
+ {
+  "id": "mo-2022-1-2",
+  "title": "2022 · 1st session · Ex 2 — Finding the mass and the time equation",
+  "parent": "Mechanical Oscillations — Official Exams",
+  "href": "official/mechanical-oscillations/index.html#e2022-1-2",
+  "blocks": 8,
+  "check": {
+   "iv": "eMOkFEoJlsOC+U5x",
+   "ct": "UVniWq7w79e+Yb4mDZS1D+bAqFQ9BA=="
+  }
+ },
+ {
+  "id": "mo-2021-2-1",
+  "title": "2021 · 2nd session · Ex 1 — Maximum speed of an oscillator",
+  "parent": "Mechanical Oscillations — Official Exams",
+  "href": "official/mechanical-oscillations/index.html#e2021-2-1",
+  "blocks": 9,
+  "check": {
+   "iv": "mxFzJJPCtNbndW0/",
+   "ct": "sV8LUKngNTtHX3pWB2qRJ8JPUEHyNw=="
+  }
+ },
+ {
+  "id": "mo-2021-1-1",
+  "title": "2021 · 1st session · Ex 1 — Determining M and k with an added mass",
+  "parent": "Mechanical Oscillations — Official Exams",
+  "href": "official/mechanical-oscillations/index.html#e2021-1-1",
+  "blocks": 7,
+  "check": {
+   "iv": "ZOsPdHSkBOoaKwng",
+   "ct": "9DzXKaaDw2QQ/3eYYiKrPkvRz+/s9g=="
+  }
+ },
+ {
+  "id": "mo-2019-2-2",
+  "title": "2019 · 2nd session · Ex 2 — The graph of x² against v²",
+  "parent": "Mechanical Oscillations — Official Exams",
+  "href": "official/mechanical-oscillations/index.html#e2019-2-2",
+  "blocks": 5,
+  "check": {
+   "iv": "IctoDw9TPjj/2fFt",
+   "ct": "ICBI4hJkwuq2DpodZvPLNHC49RQeog=="
+  }
+ },
+ {
+  "id": "mo-2019-1-1",
+  "title": "2019 · 1st session · Ex 1 — Launched backwards: finding m and k",
+  "parent": "Mechanical Oscillations — Official Exams",
+  "href": "official/mechanical-oscillations/index.html#e2019-1-1",
+  "blocks": 9,
+  "check": {
+   "iv": "mz5BulhejHVTV8by",
+   "ct": "0iQEfoRb/hL5XRcpr1vtg3tSkh4b6w=="
+  }
+ },
+ {
+  "id": "mo-2018-2-1",
+  "title": "2018 · 2nd session · Ex 1 — Stiffness of a spring after a collision",
+  "parent": "Mechanical Oscillations — Official Exams",
+  "href": "official/mechanical-oscillations/index.html#e2018-2-1",
+  "blocks": 7,
+  "check": {
+   "iv": "1r/Gs861TmP4q+vf",
+   "ct": "fDeHXshHEEGsHkHmsgMAdYhamiDq1A=="
+  }
+ },
+ {
+  "id": "mo-2017-2-3",
+  "title": "2017 · 2nd session · Ex 3 — Mass of a block and stiffness of a spring",
+  "parent": "Mechanical Oscillations — Official Exams",
+  "href": "official/mechanical-oscillations/index.html#e2017-2-3",
+  "blocks": 8,
+  "check": {
+   "iv": "UTS2/kaoHS3PqAnn",
+   "ct": "ObLErsJFH7WV5UVg+0+2qsov1VRH+w=="
+  }
+ },
+ {
+  "id": "mo-2017-1-1",
+  "title": "2017 · 1st session · Ex 1 — Two methods to find the stiffness",
+  "parent": "Mechanical Oscillations — Official Exams",
+  "href": "official/mechanical-oscillations/index.html#e2017-1-1",
+  "blocks": 6,
+  "check": {
+   "iv": "9IwnuFLu9Buvd1Du",
+   "ct": "vSHLaXjffADfE3BnY16imF/9cQpViQ=="
+  }
+ },
+ {
+  "id": "mo-2016-1-1",
+  "title": "2016 · 1st session · Ex 1 — Harmonic oscillator and its energies",
+  "parent": "Mechanical Oscillations — Official Exams",
+  "href": "official/mechanical-oscillations/index.html#e2016-1-1",
+  "blocks": 8,
+  "check": {
+   "iv": "cBPzDatzgtNILX+w",
+   "ct": "lHtEHTgGMRovR6jIA62dm+sp3PCAFw=="
+  }
+ },
+ {
+  "id": "mo-2015-2-2",
+  "title": "2015 · 2nd session · Ex 2 — Measuring g with a vertical spring",
+  "parent": "Mechanical Oscillations — Official Exams",
+  "href": "official/mechanical-oscillations/index.html#e2015-2-2",
+  "blocks": 8,
+  "check": {
+   "iv": "uDCbsWhB/79ivGrF",
+   "ct": "l0F/9Bi4Zn+yqfR38bx6S88IWlq5vQ=="
+  }
+ },
+ {
+  "id": "mo-2013-2-2",
+  "title": "2013 · 2nd session · Ex 2 — Reading x(t) and the energy curves",
+  "parent": "Mechanical Oscillations — Official Exams",
+  "href": "official/mechanical-oscillations/index.html#e2013-2-2",
+  "blocks": 6,
+  "check": {
+   "iv": "im4Fm5+oOPwWyubm",
+   "ct": "w09fxAeybVMyzNVr6Nu4m4rcDT48kA=="
+  }
+ },
+ {
+  "id": "mo-2013-1-1",
+  "title": "2013 · 1st session · Ex 1 — From a pendulum to a spring oscillator",
+  "parent": "Mechanical Oscillations — Official Exams",
+  "href": "official/mechanical-oscillations/index.html#e2013-1-1",
+  "blocks": 5,
+  "check": {
+   "iv": "WkBk2mFTXROkIc0X",
+   "ct": "xR0h6sFEhGx7qLsgnx+l2R9viNDGkg=="
+  }
+ },
+ {
+  "id": "mo-2012-1-1",
+  "title": "2012 · 1st session · Ex 1 — When part of the mass drops off",
+  "parent": "Mechanical Oscillations — Official Exams",
+  "href": "official/mechanical-oscillations/index.html#e2012-1-1",
+  "blocks": 8,
+  "check": {
+   "iv": "WACjlPCFyTkl5wzY",
+   "ct": "p0sT0nngSPM77XvYXISx7yYIj08Vsw=="
+  }
+ },
+ {
+  "id": "mo-2011-1-1",
+  "title": "2011 · 1st session · Ex 1 — Released from the left",
+  "parent": "Mechanical Oscillations — Official Exams",
+  "href": "official/mechanical-oscillations/index.html#e2011-1-1",
+  "blocks": 7,
+  "check": {
+   "iv": "BBOF9beXfcoqT0gr",
+   "ct": "dIMfLq1fXraalW30DAqOx/OikdENlw=="
+  }
+ },
+ {
+  "id": "mo-2009-2-2",
+  "title": "2009 · 2nd session · Ex 2 — Free, damped and driven oscillations",
+  "parent": "Mechanical Oscillations — Official Exams",
+  "href": "official/mechanical-oscillations/index.html#e2009-2-2",
+  "blocks": 6,
+  "check": {
+   "iv": "USzlrNwn9ZNmuhDl",
+   "ct": "sPwTx81T/pZc0hN1IMIYRClW5rFw+Q=="
+  }
+ },
+ {
+  "id": "mo-2009-1-1",
+  "title": "2009 · 1st session · Ex 1 — Checking simple harmonic motion with a table",
+  "parent": "Mechanical Oscillations — Official Exams",
+  "href": "official/mechanical-oscillations/index.html#e2009-1-1",
+  "blocks": 7,
+  "check": {
+   "iv": "fu6M+pyazBHk/uT1",
+   "ct": "F4wUQEVoysuwqpLR7FjNlW9mJxnIYA=="
+  }
+ },
+ {
+  "id": "mo-2008-2-1",
+  "title": "2008 · 2nd session · Ex 1 — A puck sets the oscillator in motion",
+  "parent": "Mechanical Oscillations — Official Exams",
+  "href": "official/mechanical-oscillations/index.html#e2008-2-1",
+  "blocks": 3,
+  "check": {
+   "iv": "F95EEqMEN6or6Kaq",
+   "ct": "Km4stY+JSiiBeoZ/yLQWatnGPzJYEw=="
+  }
+ },
+ {
+  "id": "mo-2008-1-1",
+  "title": "2008 · 1st session · Ex 1 — Air table: free, then damped and driven",
+  "parent": "Mechanical Oscillations — Official Exams",
+  "href": "official/mechanical-oscillations/index.html#e2008-1-1",
+  "blocks": 6,
+  "check": {
+   "iv": "uE9Rrsv5NbPJKADw",
+   "ct": "OvRWMmcZ6H3D0la/4CDhKpFabm3CVA=="
+  }
+ },
+ {
+  "id": "mo-2007-1-1",
+  "title": "2007 · 1st session · Ex 1 — Comparing two situations",
+  "parent": "Mechanical Oscillations — Official Exams",
+  "href": "official/mechanical-oscillations/index.html#e2007-1-1",
+  "blocks": 7,
+  "check": {
+   "iv": "0rrD/clj5SODr0XS",
+   "ct": "tqaG+kl8jvzzba2P4sDc/QYoNZ6Kkw=="
+  }
+ },
+ {
+  "id": "mo-2006-2-1",
+  "title": "2006 · 2nd session · Ex 1 — Speed from a chronophotograph",
+  "parent": "Mechanical Oscillations — Official Exams",
+  "href": "official/mechanical-oscillations/index.html#e2006-2-1",
+  "blocks": 5,
+  "check": {
+   "iv": "04y0SxXVb5epLg9G",
+   "ct": "0uak+75bUQA4zjziEVxC/MGxUxJYJg=="
+  }
+ },
+ {
+  "id": "mo-2005-2-1",
+  "title": "2005 · 2nd session · Ex 1 — Launching by an elastic collision",
+  "parent": "Mechanical Oscillations — Official Exams",
+  "href": "official/mechanical-oscillations/index.html#e2005-2-1",
+  "blocks": 5,
+  "check": {
+   "iv": "4p5FHu4Uf2AScq/U",
+   "ct": "WSrsP3YGVUUIDsp1LbT/fBbTBJRiJA=="
   }
  }
 ];

@@ -404,3 +404,30 @@ a.excard:hover{transform:translateY(-2px);border-color:var(--chap)}
 @media (max-width:640px){.oe-body figure{overflow-x:auto}.oe-body figure svg{min-width:540px}}
 .omk{display:block;margin-top:6px;font-size:13px;font-weight:700;color:var(--ok);text-align:right}
 .okey{color:var(--ok)}
+
+/* ---------- mechanical oscillations chapter ---------- */
+.roadmap{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}
+.roadmap span{font-size:13.5px;background:var(--chap-soft);color:var(--ink);border-radius:99px;padding:4px 10px}
+.roadmap b{color:var(--chap);margin-right:4px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+@media (max-width:760px){.two{grid-template-columns:1fr}}
+ul.tight{padding-left:20px;margin:6px 0}ul.tight li{margin:4px 0}
+.fig-inline{margin:0;background:#fff;border:1px solid var(--line);border-radius:10px;padding:6px}
+.fig-inline svg{width:100%;height:auto}
+.stepper .sl{padding:6px 2px;border-bottom:1px dashed var(--line)}
+.stepper .sl.pop{animation:slpop .35s ease}
+@keyframes slpop{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.stepper [data-next]{margin-top:8px}
+.gamebox{margin-top:10px;padding:9px 12px;border-radius:10px;background:var(--accent-soft);font-size:15px}
+.gamebox.win{background:var(--ok-soft);color:var(--ok)}
+.simnote{font-size:13.5px;color:var(--muted);margin:8px 0 0}
+.sim3d .stage{width:100%;border-radius:8px;overflow:hidden;background:linear-gradient(180deg,var(--chap-soft),var(--paper));border:1px solid var(--line);min-height:120px}
+.sim3d .stage canvas{display:block;border:0;border-radius:0;background:transparent}
+.sim3d canvas.hud{margin-top:8px}
+.sim .seg button[aria-pressed="true"],.sim .seg button:active{background:var(--chap);color:var(--brand-ink)}
+table.casetab{margin:10px auto}
+table.casetab td:first-child{text-align:left}
+.kin{font:inherit;width:90px;padding:5px 8px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);margin-left:6px}
+.kres.ok{color:var(--ok);font-weight:700}.kres.no{color:var(--bad);font-weight:700}
+.subnav a.subtab{text-decoration:none;display:inline-flex;align-items:center}
+.sim table.t2m{margin:8px auto;font-size:14px}

@@ -21,9 +21,24 @@ window.LSP_CHAPTERS = [
       ["⑥", "Practice 2", "practice2", "3 exercises · hidden answers"]
     ]
   },
+  {
+    id: "mechanical-oscillations",
+    title: "Mechanical Oscillations",
+    status: "live",
+    href: "chapters/mechanical-oscillations/index.html",
+    pdf: "chapters/mechanical-oscillations/mechanical_oscillations_toolkit.pdf",
+    blurb: "From a block on a spring to car suspensions and pendulum clocks: the differential equation, x = Xm sin(ω₀t + φ), initial conditions, energy curves, damping, driven oscillations, measuring k, m and g — with two 3D labs.",
+    contents: [
+      ["①", "Session 1", "lesson", "7 steps · 3D air-track lab · 4 live models"],
+      ["②", "Cards 1", "cards1", "8 flip cards"],
+      ["③", "Practice 1", "practice1", "3 exercises · hidden answers"],
+      ["④", "Session 2", "lesson2", "6 steps · 3D car suspension · 5 live models"],
+      ["⑤", "Cards 2", "cards2", "8 flip cards"],
+      ["⑥", "Practice 2", "practice2", "3 exercises · hidden answers"]
+    ]
+  },
   { id: "library", title: "Library", status: "live", type: "library" },
   { id: "official", title: "Official Exams", status: "live", type: "exams" },
-  { id: "mechanical-oscillations", title: "Mechanical Oscillations", status: "soon" },
   { id: "electromagnetic-induction", title: "Electromagnetic Induction", status: "soon" }
 ];
 
@@ -76,6 +91,12 @@ window.LSP_OFFICIAL = [
     skills: ["Newton II", "Conservation", "Elastic or not", "Explosion", "Interaction", "Centre of mass", "Projectile", "With energy"],
     note: "2022–2024 with the official marking schemes"
   },
-  { chapter: "Chapter 1", title: "Energy", status: "soon" },
-  { chapter: "Chapter 4", title: "Mechanical Oscillations", status: "soon" }
+  {
+    chapter: "Chapter 4", title: "Mechanical Oscillations", status: "live",
+    href: "official/mechanical-oscillations/index.html",
+    exercises: 22, span: "2005–2022", questions: 149,
+    skills: ["Diff. eq.", "T₀, ω₀", "Time eq.", "Graphs", "Energy", "Find k, m", "+ Collision", "Damping"],
+    note: "every question with its official mark"
+  },
+  { chapter: "Chapter 1", title: "Energy", status: "soon" }
 ];
