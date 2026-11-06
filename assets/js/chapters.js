@@ -48,6 +48,25 @@ window.LSP_CHAPTERS = [
    ========================================================= */
 window.LSP_LIBRARY = [
   {
+    group: "Chapters 1 & 2 — Energy · Linear Momentum",
+    items: [
+      {
+        tag: "Practice exam · 20 pts · 2 h",
+        title: "Energy & Momentum — Practice Exam 1",
+        blurb: "A spring launcher on an incline, two skaters pushing off, two carts and a bumper: ME and its conservation, friction and ΔU, ME derivative → acceleration, conservation of momentum, ΣF = dP/dt from a graph, soft collision.",
+        href: "library/em-exam-1/index.html",
+        pdf: "library/em-exam-1/energy_momentum_exam_1.pdf"
+      },
+      {
+        tag: "Practice exam · 20 pts · 2 h",
+        title: "Energy & Momentum — Practice Exam 2",
+        blurb: "A ball thrown upwards, a collision on an air track, measuring the speed of a bullet: energy curves, air resistance, elastic collision check, principle of interaction, ballistic pendulum.",
+        href: "library/em-exam-2/index.html",
+        pdf: "library/em-exam-2/energy_momentum_exam_2.pdf"
+      }
+    ]
+  },
+  {
     group: "Chapter 2 — Linear Momentum",
     items: [
       {

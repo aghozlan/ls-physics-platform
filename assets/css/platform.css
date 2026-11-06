@@ -431,3 +431,6 @@ table.casetab td:first-child{text-align:left}
 .kres.ok{color:var(--ok);font-weight:700}.kres.no{color:var(--bad);font-weight:700}
 .subnav a.subtab{text-decoration:none;display:inline-flex;align-items:center}
 .sim table.t2m{margin:8px auto;font-size:14px}
+/* library exams: figure beside its data */
+.exercise .row{display:flex;gap:16px;align-items:center}.exercise .row>figure{flex:0 0 55%;margin:8px 0}.exercise .row>div,.exercise .row>p{flex:1}
+@media (max-width:700px){.exercise .row{display:block}}
