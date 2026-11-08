@@ -63,6 +63,20 @@ window.LSP_LIBRARY = [
         blurb: "A ball thrown upwards, a collision on an air track, measuring the speed of a bullet: energy curves, air resistance, elastic collision check, principle of interaction, ballistic pendulum.",
         href: "library/em-exam-2/index.html",
         pdf: "library/em-exam-2/energy_momentum_exam_2.pdf"
+      },
+      {
+        tag: "Practice exam · 20 pts · 2 h",
+        title: "Energy & Momentum — Practice Exam 3",
+        blurb: "A child on a swing (pendulum energy, friction and power), dot prints of a perfectly elastic collision (two unknown velocities, checked against the recording), a crane lifting at constant speed (constant momentum, power, efficiency).",
+        href: "library/em-exam-3/index.html",
+        pdf: "library/em-exam-3/energy_momentum_exam_3.pdf"
+      },
+      {
+        tag: "Practice exam · 20 pts · 2 h",
+        title: "Energy & Momentum — Practice Exam 4",
+        blurb: "A perfectly elastic collision with an unknown mass and velocity, a pendulum hitting a block of equal mass, a bouncing ball: momentum change, average force, energy lost and rebound height.",
+        href: "library/em-exam-4/index.html",
+        pdf: "library/em-exam-4/energy_momentum_exam_4.pdf"
       }
     ]
   },
