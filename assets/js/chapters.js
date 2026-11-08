@@ -67,7 +67,7 @@ window.LSP_LIBRARY = [
       {
         tag: "Practice exam · 20 pts · 2 h",
         title: "Energy & Momentum — Practice Exam 3",
-        blurb: "A child on a swing (pendulum energy, friction and power), dot prints of a perfectly elastic collision (two unknown velocities, checked against the recording), a crane lifting at constant speed (constant momentum, power, efficiency).",
+        blurb: "A child on a swing (pendulum energy, friction and power), dot prints of a perfectly elastic collision (two unknown velocities, checked against the recording), a puck on an inclined air table (speeds from a recorded table, ΣF = dP/dt, friction force, ΔME = W(f)).",
         href: "library/em-exam-3/index.html",
         pdf: "library/em-exam-3/energy_momentum_exam_3.pdf"
       },

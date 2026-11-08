@@ -7,8 +7,8 @@ export const PAGES = [
   "href": "chapters/linear-momentum/index.html",
   "blocks": 35,
   "check": {
-   "iv": "3DX2oCVTwtZe/2lV",
-   "ct": "Yr5JTPifAD/zKjn8s3hxTosGYS2qvA=="
+   "iv": "k3p02YjIiKdN1JjH",
+   "ct": "f2lm739pZduxI1IVksKLIfwI1h/eIw=="
   }
  },
  {
@@ -17,8 +17,8 @@ export const PAGES = [
   "href": "chapters/mechanical-oscillations/index.html",
   "blocks": 34,
   "check": {
-   "iv": "PcEzixv6RdQSUzIV",
-   "ct": "s/mFwyUHXxLnLX/dmVuWCp43NEpzKg=="
+   "iv": "KRzcWkn7a/OjZWXM",
+   "ct": "07vYYVdkaM8BO2IUabUtt9X2M1eDPQ=="
   }
  },
  {
@@ -27,8 +27,8 @@ export const PAGES = [
   "href": "library/em-exam-1/index.html",
   "blocks": 9,
   "check": {
-   "iv": "eQCyf5TybpZ0XL1Q",
-   "ct": "WyeZtyAsYrZtqSlM5zbYvcJxJ6/gIg=="
+   "iv": "Wnvi43GincWit3H5",
+   "ct": "GdRZnGPiPxnpDMy8NB60x3kpCKszFw=="
   }
  },
  {
@@ -37,18 +37,18 @@ export const PAGES = [
   "href": "library/em-exam-2/index.html",
   "blocks": 8,
   "check": {
-   "iv": "/rKH42wJQH4un79b",
-   "ct": "fsQc9K+y5aie/wb74LPPNcz3YjEINw=="
+   "iv": "U8wPYzKs8w2VNYqA",
+   "ct": "qOCRO1IniqSW71+JEqpOaBHtS6qU5Q=="
   }
  },
  {
   "id": "em-exam-3",
   "title": "Energy &amp; Momentum — Practice Exam 3",
   "href": "library/em-exam-3/index.html",
-  "blocks": 8,
+  "blocks": 9,
   "check": {
-   "iv": "X0H/K8jY0S3yP7VP",
-   "ct": "R+kwzWaB/qgeyMTSM8xKXssNAMoXKA=="
+   "iv": "r/6YAXGnU9qrndyb",
+   "ct": "QsMWkx73mWxVwxSWOGoK6AWLWIgZOg=="
   }
  },
  {
@@ -57,8 +57,8 @@ export const PAGES = [
   "href": "library/em-exam-4/index.html",
   "blocks": 9,
   "check": {
-   "iv": "OyBKfyz9UJcTWSl/",
-   "ct": "sTdoIAC5iXJGnFv3pd1MC5/uCUhDBA=="
+   "iv": "IMXJdWLUErjdA6Qa",
+   "ct": "XDbJk4GJ0jP/7l9f13je0sEl8orhcw=="
   }
  },
  {
@@ -67,8 +67,8 @@ export const PAGES = [
   "href": "library/energy-test-1/index.html",
   "blocks": 6,
   "check": {
-   "iv": "K68cb8vgrPTXolfS",
-   "ct": "/GkU6xozARtk0teYSvXY9RaRfDjUdA=="
+   "iv": "SevKed3X2RwvzGPD",
+   "ct": "J317M239Ct1VKBBsBQi/sBzSDZRIBw=="
   }
  },
  {
@@ -77,8 +77,8 @@ export const PAGES = [
   "href": "library/energy-test-2/index.html",
   "blocks": 5,
   "check": {
-   "iv": "N0Pmt/A4ow9YcW/l",
-   "ct": "K+0gjONkCDYzXFoOQjKBcGRfRUxi/A=="
+   "iv": "HsWw/yoc95byxTtl",
+   "ct": "5B+TfOL8PQSW8ZRvPM5zyOqTmnRibA=="
   }
  },
  {
@@ -87,8 +87,8 @@ export const PAGES = [
   "href": "library/lm-practice-1/index.html",
   "blocks": 9,
   "check": {
-   "iv": "a3r54EqFHqpOLWKH",
-   "ct": "m5a/aomLKR+1/zUcbIsh8JEP2A0d0Q=="
+   "iv": "DQ2T6bjafd9Za0cC",
+   "ct": "UG7X+SKmOFVT1+WGNDg/GJWlGEcPqA=="
   }
  },
  {
@@ -98,8 +98,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2024-1-2",
   "blocks": 6,
   "check": {
-   "iv": "8Oq54oHbMNU2LoJX",
-   "ct": "hvR3w5d9v36H37dhgRegwJFe29JDkA=="
+   "iv": "gWV8ZGIgYLjdGr1D",
+   "ct": "LoJdd3KZE5hlcsaSozJt7nwgZkjFrA=="
   }
  },
  {
@@ -109,8 +109,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2023-1-1",
   "blocks": 7,
   "check": {
-   "iv": "qC6IjT9UQvCHbHXY",
-   "ct": "VEJWxyzC7YSE1tTrfj54eNrRzg/MpQ=="
+   "iv": "JoCxk6VRK4gqdBEa",
+   "ct": "6AWdo2wNRQLhmpkR073kwWmxiIffXw=="
   }
  },
  {
@@ -120,8 +120,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2022-2-2",
   "blocks": 7,
   "check": {
-   "iv": "JG5Q7pTY1TKv+qJd",
-   "ct": "tuMYK8+AjFnp0Y8WrUZoOUM1ky9DjA=="
+   "iv": "jWa8p1qomNumw/U+",
+   "ct": "Rwj3prPvLIVaFlHkTldZ88Y0aF75+g=="
   }
  },
  {
@@ -131,8 +131,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2022-1-1",
   "blocks": 5,
   "check": {
-   "iv": "g4djKN7cbuK5wZrg",
-   "ct": "iRU3lI68ZWOOBRAs9Jjm5XEhILFhkA=="
+   "iv": "NEMPtvi+qnCohfpM",
+   "ct": "l/PhsqHOWdRbLDbbuimsvqm9kbF1aw=="
   }
  },
  {
@@ -142,8 +142,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2021-2-2",
   "blocks": 6,
   "check": {
-   "iv": "fjAvmymmwBMf8ieG",
-   "ct": "rqczECQIbHNmxpCUfS2ruGuk38+4Lg=="
+   "iv": "OLJ6u+U21c5HwURr",
+   "ct": "/90FfS9oC0hZrshKo1/8nfr3HkLzPw=="
   }
  },
  {
@@ -153,8 +153,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2016-2-2",
   "blocks": 6,
   "check": {
-   "iv": "pxURH3n82E9MoYIM",
-   "ct": "ofd7RyZiJwYqVJPkc/iO23LmObVsDw=="
+   "iv": "bK7SOLHcYqDAd0O5",
+   "ct": "0VNcYwk5tEfylOlMHYrxcUKF/FpElg=="
   }
  },
  {
@@ -164,8 +164,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2015-1-1",
   "blocks": 6,
   "check": {
-   "iv": "jADPgZVNrS0DNIzm",
-   "ct": "9HDviZSWPovHzIE0Qv2xHcBpaJz5Tg=="
+   "iv": "6I0Wv2V3ZjKXyxUg",
+   "ct": "RTiXRw8FQFeSfJt2NTs4j9e637GVnQ=="
   }
  },
  {
@@ -175,8 +175,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2012-2-1",
   "blocks": 9,
   "check": {
-   "iv": "mEuwsCVuwtbCm8QN",
-   "ct": "TNA9W06ctCI76pggyXSWFhhbBHlp6g=="
+   "iv": "QT5oBOZrbnVt/V/p",
+   "ct": "8+dGTJr1xLYgxoW4fs8AdbQ8HTA2VQ=="
   }
  },
  {
@@ -186,8 +186,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2010-2-3",
   "blocks": 8,
   "check": {
-   "iv": "vIDel40uDU9jSYwA",
-   "ct": "8szkLRnV5OZ2VCAQNZGswVFPCvMJvQ=="
+   "iv": "Xr8QSeHxxdUqOmcV",
+   "ct": "87LJR8royMxYKsNDWxVk/liDzJmlEQ=="
   }
  },
  {
@@ -197,8 +197,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2007-2-1",
   "blocks": 4,
   "check": {
-   "iv": "kdGr1HZZN47U7fS0",
-   "ct": "uPt5JFLDrdhLJ7U26SpoXjzTaaDShg=="
+   "iv": "FjgQ4xHt4coq96cF",
+   "ct": "6wqnfwHsmust3iLM4VB67DQjZSoVyA=="
   }
  },
  {
@@ -208,8 +208,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2006-1-1",
   "blocks": 5,
   "check": {
-   "iv": "gYllt72ZXrWXiWXk",
-   "ct": "YwB+qHx/M3NFwlIlgtQLffUU8P73hQ=="
+   "iv": "QsKbR0Nv/WtOvMx6",
+   "ct": "Fue3IvrP6l9hXFmoK5dmtcRJymn54g=="
   }
  },
  {
@@ -219,8 +219,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2004-2-1",
   "blocks": 4,
   "check": {
-   "iv": "/xhvqf77drUV9Nkx",
-   "ct": "ej9fCk3pkgF/afUAFYTGI7MGfSSJbA=="
+   "iv": "zowBElzQqXuT8sYK",
+   "ct": "gO0z2a/R7NSaVadU+X3lboWmYHDIhg=="
   }
  },
  {
@@ -230,8 +230,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2002-2-1",
   "blocks": 7,
   "check": {
-   "iv": "P7Cyz7gNCTqaD1Og",
-   "ct": "26JlzWp8Sh3lZ0Mv02KlDhI4HUnV/A=="
+   "iv": "dzTICFMeLc3FdYis",
+   "ct": "fNC9++99HXDav59xB+eZFe5PzS23VA=="
   }
  },
  {
@@ -241,8 +241,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2002-1-1",
   "blocks": 7,
   "check": {
-   "iv": "Ih5xfF26H7FXV0m+",
-   "ct": "NhqwTqmZQTz0T9KoLYVTSmYse/M8Rg=="
+   "iv": "SVzyRZ5SjHfR5aey",
+   "ct": "VQIAufe/sIJDpjKJmrcYC7o/gSzbrQ=="
   }
  },
  {
@@ -252,8 +252,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#e2001-2-1",
   "blocks": 5,
   "check": {
-   "iv": "2+ErRnHpuB0chM/g",
-   "ct": "Xn9hnIH3AkTyuNYpfE6AXiQhe/gW0g=="
+   "iv": "1SUmb1iQUpPhs4jI",
+   "ct": "8GgrImi4Yq7z44waRFR9Z3JtsNblEQ=="
   }
  },
  {
@@ -263,8 +263,8 @@ export const PAGES = [
   "href": "official/linear-momentum/index.html#esample-2-2",
   "blocks": 6,
   "check": {
-   "iv": "SqBkaHabPM2LGEYq",
-   "ct": "UKRJT/UKA5eM/jmTTtjbL4LFBPd8Vg=="
+   "iv": "6iHwCuicPMd1dejD",
+   "ct": "4c0OaMwZjzHDwPKi2jXFaOXsFJx88Q=="
   }
  },
  {
@@ -274,8 +274,8 @@ export const PAGES = [
   "href": "official/mechanical-oscillations/index.html#e2022-2-1",
   "blocks": 9,
   "check": {
-   "iv": "gsCkD0lUp2PyxOrG",
-   "ct": "k2LZkt4lWXi33sPTOrodVqRd704Cww=="
+   "iv": "sAXaYN0Eweqtdy0C",
+   "ct": "sM+9W/dxq+Tyniq2h9YOJtUmKqzxFw=="
   }
  },
  {
@@ -285,8 +285,8 @@ export const PAGES = [
   "href": "official/mechanical-oscillations/index.html#e2022-1-2",
   "blocks": 8,
   "check": {
-   "iv": "1cmDoWZ09bRn0jSm",
-   "ct": "M0eS7Zw6SurdQ7ek8vXaGkNwSwNYzA=="
+   "iv": "lDAleJF2tOYvfgUP",
+   "ct": "xA/d/RXYdZ9SUIRbL1I262oOaGwyrw=="
   }
  },
  {
@@ -296,8 +296,8 @@ export const PAGES = [
   "href": "official/mechanical-oscillations/index.html#e2021-2-1",
   "blocks": 9,
   "check": {
-   "iv": "i5H0sFlknJufs7ZM",
-   "ct": "ad69nlp4T3Z8UwQr0cRbL6PTYcgGGA=="
+   "iv": "W0To0yXGdn9XrZA0",
+   "ct": "F9HAr+RhtL+L/ag/uHsyURIi2PrpUg=="
   }
  },
  {
@@ -307,8 +307,8 @@ export const PAGES = [
   "href": "official/mechanical-oscillations/index.html#e2021-1-1",
   "blocks": 7,
   "check": {
-   "iv": "g3IjTQmGAyQSthMZ",
-   "ct": "aGbfVB60pn4INsQ+eWHgT/zjg4FXPA=="
+   "iv": "93/Qrn7xLWy8sUyr",
+   "ct": "vZwNLE0Q/eexHYzE/PHT0PkdFDpzow=="
   }
  },
  {
@@ -318,8 +318,8 @@ export const PAGES = [
   "href": "official/mechanical-oscillations/index.html#e2019-2-2",
   "blocks": 5,
   "check": {
-   "iv": "o0PtJG8YOstFoyia",
-   "ct": "d2Ut3sGajNh5/+LWdC1hvH4PmeNEqQ=="
+   "iv": "7w3TZG4Uy7oLHwxv",
+   "ct": "qDPatGAp+5smbt+sW69gHZN/Xjrwjw=="
   }
  },
  {
@@ -329,8 +329,8 @@ export const PAGES = [
   "href": "official/mechanical-oscillations/index.html#e2019-1-1",
   "blocks": 9,
   "check": {
-   "iv": "51VPmosqV+ex7I+C",
-   "ct": "ZyiflojvcQbXrVnfuoYGR6kJSRw7Uw=="
+   "iv": "NkKMpo9FsMb7yQQ3",
+   "ct": "FiH5VHpT+2DlYH7z1YAKZk09rU9RmQ=="
   }
  },
  {
@@ -340,8 +340,8 @@ export const PAGES = [
   "href": "official/mechanical-oscillations/index.html#e2018-2-1",
   "blocks": 7,
   "check": {
-   "iv": "tw5AT7XKWf6R+a3F",
-   "ct": "QrK5P9RmIKNY7cTkWvEW6sFJ/mp1Sw=="
+   "iv": "A4aJO+IlKxQeU5Li",
+   "ct": "P62cDvtLpZiOu1o0Opf6cRr71mJfaw=="
   }
  },
  {
@@ -351,8 +351,8 @@ export const PAGES = [
   "href": "official/mechanical-oscillations/index.html#e2017-2-3",
   "blocks": 8,
   "check": {
-   "iv": "+Svvxwnke8bm8EYx",
-   "ct": "jViKaB7FaZBIeboZqQh0ANpmz4RKXg=="
+   "iv": "IxlBnIgXnYWoN8ET",
+   "ct": "s7AF+kd3/rGuzXb3vScHV9JBly94iQ=="
   }
  },
  {
@@ -362,8 +362,8 @@ export const PAGES = [
   "href": "official/mechanical-oscillations/index.html#e2017-1-1",
   "blocks": 6,
   "check": {
-   "iv": "t4VkEehIuMKkUHyU",
-   "ct": "IuF2lkHvrjW/+tWHrAkGafIMWC2pKQ=="
+   "iv": "f7/jRLyeN9BKnnyk",
+   "ct": "8HF/JGPKpBn3GgDrdBB76JL+uo2dFQ=="
   }
  },
  {
@@ -373,8 +373,8 @@ export const PAGES = [
   "href": "official/mechanical-oscillations/index.html#e2016-1-1",
   "blocks": 8,
   "check": {
-   "iv": "j/eYjC8ShYFE0ywJ",
-   "ct": "AtL7OG43EVdEDd/Fo0j/04w0P36jog=="
+   "iv": "D4z7Fv0O7e0ekeOR",
+   "ct": "46JRis49MmP4Uh0eT9FECmsomShwAg=="
   }
  },
  {
@@ -384,8 +384,8 @@ export const PAGES = [
   "href": "official/mechanical-oscillations/index.html#e2015-2-2",
   "blocks": 8,
   "check": {
-   "iv": "WV054I7wHhLKW8N6",
-   "ct": "f3Pq0x1BFJRJTFKDIrYe4YLD4YHuzg=="
+   "iv": "v/un07GkTaA3YX4B",
+   "ct": "3JArQpLiNIkttwJaaONdleeNBeQobw=="
   }
  },
  {
@@ -395,8 +395,8 @@ export const PAGES = [
   "href": "official/mechanical-oscillations/index.html#e2013-2-2",
   "blocks": 6,
   "check": {
-   "iv": "/i9m7rthYb++3MK+",
-   "ct": "e94v95RvE7dT9W1dTOLtGy9YapnSyQ=="
+   "iv": "r1jkDM7mgUGzJlZs",
+   "ct": "nEHLqeg7Hn3o7D6o3jfcQdjHiXRXVw=="
   }
  },
  {
@@ -406,8 +406,8 @@ export const PAGES = [
   "href": "official/mechanical-oscillations/index.html#e2013-1-1",
   "blocks": 5,
   "check": {
-   "iv": "0VPLhBesEhxYEvds",
-   "ct": "isX3RyfT2GsQPQRGWdzTJo8AyX1n5g=="
+   "iv": "Qjz12KeNlU/qjuSU",
+   "ct": "4ETCDjpcOkDvDQgJ4P1NbLr6lfX4fg=="
   }
  },
  {
@@ -417,8 +417,8 @@ export const PAGES = [
   "href": "official/mechanical-oscillations/index.html#e2012-1-1",
   "blocks": 8,
   "check": {
-   "iv": "Ie/ahpdpG50ct6ri",
-   "ct": "rXfY9I3+KdkvaKvu8IXXRlrZeVBJEg=="
+   "iv": "NT2F4HGQ5XLWQw4W",
+   "ct": "AgF9EbqkLI/kvRXA3eVr8PA2CnINOA=="
   }
  },
  {
@@ -428,8 +428,8 @@ export const PAGES = [
   "href": "official/mechanical-oscillations/index.html#e2011-1-1",
   "blocks": 7,
   "check": {
-   "iv": "dC6wXVgurbhfOzWb",
-   "ct": "ovkx1lx5Kxs7nN48o1dFRzAdcGO4wQ=="
+   "iv": "scSJxKUOjRnJo9ew",
+   "ct": "GL0GfYJlQzjRkRQ/Ncm1GThsJ8jM4A=="
   }
  },
  {
@@ -439,8 +439,8 @@ export const PAGES = [
   "href": "official/mechanical-oscillations/index.html#e2009-2-2",
   "blocks": 6,
   "check": {
-   "iv": "5+ch8CRQd9f3zTlN",
-   "ct": "9fT3Ya9Mi6svSKTFwu86Rk3cR8kP4w=="
+   "iv": "IBlMyfkVKVvXQqPa",
+   "ct": "FDm3vFGcJVLxCoujglaQA1ZRP/Y/yg=="
   }
  },
  {
@@ -450,8 +450,8 @@ export const PAGES = [
   "href": "official/mechanical-oscillations/index.html#e2009-1-1",
   "blocks": 7,
   "check": {
-   "iv": "KBgXwZymNw4Kku7W",
-   "ct": "HfPsRqIWsHs3PlJibC0sTdlpW5NBcQ=="
+   "iv": "1TBNJGCSFDqmgr6H",
+   "ct": "FBxGtezZrhPmXzldS0mlbiVjqrXG5w=="
   }
  },
  {
@@ -461,8 +461,8 @@ export const PAGES = [
   "href": "official/mechanical-oscillations/index.html#e2008-2-1",
   "blocks": 3,
   "check": {
-   "iv": "3aibpI2jNATeI5Xl",
-   "ct": "bUWg6VPuJWibgtSQvEKxHabONqcpjg=="
+   "iv": "og5yN6IotNaJ9bgh",
+   "ct": "DyKAtX91fR+sckJ5hfDivebRtSpT1g=="
   }
  },
  {
@@ -472,8 +472,8 @@ export const PAGES = [
   "href": "official/mechanical-oscillations/index.html#e2008-1-1",
   "blocks": 6,
   "check": {
-   "iv": "222KQbl73efri6YO",
-   "ct": "kukj0JXXN/dKHi1WH+ACIVMRPQhBFA=="
+   "iv": "NBH41FAh+qbQIuPM",
+   "ct": "ATfj2n/4rvSjpFOU6CGDWIKCi4BZug=="
   }
  },
  {
@@ -483,8 +483,8 @@ export const PAGES = [
   "href": "official/mechanical-oscillations/index.html#e2007-1-1",
   "blocks": 7,
   "check": {
-   "iv": "jC78lsNDlexsxdWR",
-   "ct": "dZ2AHZBmqvmWN1LzuYgsM+zsGjyi0w=="
+   "iv": "iXlvf5MOtAE8ykLA",
+   "ct": "gHHhmKSLxTdXQ/RKZPsVIvWsWHJ7ag=="
   }
  },
  {
@@ -494,8 +494,8 @@ export const PAGES = [
   "href": "official/mechanical-oscillations/index.html#e2006-2-1",
   "blocks": 5,
   "check": {
-   "iv": "NFQJXXl6tjbUcw+f",
-   "ct": "VTseVFAKNvENttl1lhKTcS6rsbuS6g=="
+   "iv": "GoYVKjqSasQw056M",
+   "ct": "prlj8dXhWEkXT84x5/gVWKI8V3jH0A=="
   }
  },
  {
@@ -505,8 +505,8 @@ export const PAGES = [
   "href": "official/mechanical-oscillations/index.html#e2005-2-1",
   "blocks": 5,
   "check": {
-   "iv": "E7H+Elb5kg6Ksyp7",
-   "ct": "LJr4bkYPnhtnSQjSpynFBLgjyf3gqA=="
+   "iv": "sV9t5rUFpOSn6cRd",
+   "ct": "qeVeHFSjprERsVhhEJmR5rAO+R/Bfw=="
   }
  }
 ];
